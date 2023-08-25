@@ -9,7 +9,7 @@ on:
 jobs:
 
   go-build:
-    name: Backend Build
+    name: Pocketbase Build
     runs-on: ubuntu-latest
     defaults:
       run:
