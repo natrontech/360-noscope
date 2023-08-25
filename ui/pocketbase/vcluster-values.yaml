@@ -1,0 +1,26 @@
+sync:
+  persistentvolumes:
+    enabled: true
+  storageclasses:
+    enabled: false
+  ingresses:
+    enabled: true
+  hoststorageclasses:
+    enabled: true
+storage:
+  persistence: false
+isolation:
+  enabled: true
+  podSecurityStandard: baseline
+  nodeProxyPermission:
+    enabled: false
+  resourceQuota:
+    enabled: false
+  limitRange:
+    enabled: false
+  networkPolicy:
+    enabled: true
+    outgoingConnections:
+      ipBlock:
+        cidr: 8.8.8.8/32
+        except: []
