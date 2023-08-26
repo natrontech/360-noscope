@@ -14,10 +14,9 @@ def geometry_by_layer_and_value(layerName, fieldName, value):
     data = find(layerName, value, fieldName)
     return data.results[0]['geometry']
 
-def geometries_for_values(layerName, fieldName):
+def geometries_for_values(layerName, fieldName, lowerBound, upperBound):
     geometries = []
-    vs = search_values_by_layer(layerName, fieldName)
-    for v in vs:
+    for v in range(lowerBound, upperBound+1):
         geometries.append(geometry_by_layer_and_value(layerName, fieldName, v))
     return geometries
 
