@@ -25,7 +25,7 @@ export const load: PageLoad = async ({ params }) => {
         );
 
         toast.success("Umfrage geladen");
-        return { survey, questions, municipality, id };
+        return { survey, questions, municipality, participant, id };
     } catch (error) {
         toast.error("Error: Umfrage existiert nicht");
     }
