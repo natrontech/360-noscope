@@ -18,14 +18,6 @@ module.exports = {
   ],
   daisyui: {
     logs: false,
-    themes: [
-      {
-        light: {
-          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
-          "primary": "#1D242A",
-          "primary-focus": "#1D242A",
-        },
-      },
-    ],
+    themes: ["emerald"],
   },
 };
