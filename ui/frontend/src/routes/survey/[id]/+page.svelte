@@ -16,7 +16,7 @@
         id: data.survey?.id,
         questions: data.questions?.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator })),
     }
-    // ToDo: send result to backend
+    // TODO: send result to backend
     console.log(result);
   }
 </script>

@@ -8,7 +8,7 @@
   <section aria-labelledby="filter-heading">
     <h2 id="filter-heading" class="sr-only">Filters</h2>
 
-    <div class="border-b border-gray-200 bg-white pb-4">
+    <div class="border-b-2 border-neutral bg-white pb-4">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-5">
         <div class="relative inline-block text-left">
           <div>
@@ -75,7 +75,7 @@
 
         <div class="hidden sm:block">
           <div class="flow-root">
-            <div class="-mx-4 flex items-center divide-x divide-gray-200">
+            <div class="-mx-4 flex items-center">
               <div class="relative inline-block px-4 text-left">
                 <button
                   type="button"

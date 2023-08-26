@@ -9,8 +9,10 @@
   <div class="absolute top-0 w-full">
     <Stats />
   </div>
-  <div class="absolute w-full overflow-y-scoll top-64 bottom-0 left-0 right-0">
-    <MunicipalitiesFilter />
+  <div class="absolute w-full overflow-y-scoll top-56 bottom-0 left-0 right-0">
+    {#if $showSurvey}{:else}
+      <MunicipalitiesFilter />
+    {/if}
     <div class="absolute top-10 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-none">
       {#if $showSurvey}{:else}
         <MunicipalitiesList />

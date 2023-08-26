@@ -7,7 +7,7 @@
   let localApiMunicipalitiesResponse: ApiMunicipalitiesResponse = apiMunicipalitiesResponse;
 </script>
 
-<ul role="list" class="divide-y divide-gray-100">
+<ul role="list" class="divide-y divide-gray-200 divide-y-2">
   {#each localApiMunicipalitiesResponse.municipalities as participatingMunicipality}
     <MunicipalitiesListItem {participatingMunicipality} />
   {/each}

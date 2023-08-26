@@ -1,10 +1,6 @@
 <script lang="ts">
   import type { ParticipatingMunicipality } from "$lib/types/analyze-data";
   import {
-    CircleSlash,
-    CircleSlash2,
-    FileLineChart,
-    LineChart,
     MoveHorizontal
   } from "lucide-svelte";
   import RatingLabel from "../RatingLabel.svelte";
@@ -17,20 +13,22 @@
   }
 
   function calculateColor() {
-    const difference = Math.abs(participatingMunicipality.avgQuantitativeRating - participatingMunicipality.avgQualitativeRating);
+    const difference = Math.abs(
+      participatingMunicipality.avgQuantitativeRating -
+        participatingMunicipality.avgQualitativeRating
+    );
     if (difference <= 0.5) return "bg-green-500";
     if (difference <= 1) return "bg-yellow-500";
     if (difference <= 1.5) return "bg-orange-500";
     return "red";
   }
-
 </script>
 
-<li class="flex items-center justify-between gap-x-6 py-5">
-  <div class="flex w-full justify-between">
+<li class="flex items-center justify-between gap-x-6 py-2">
+  <div class="flex w-full items-center justify-center">
     <div class="">
       <div class="flex items-start gap-x-3">
-        <p class="text-sm font-semibold leading-6 text-gray-900">
+        <p class="text-sm font-semibold leading-6 text-neutral">
           {participatingMunicipality.name}
         </p>
         <RatingLabel
@@ -52,30 +50,34 @@
     </div>
     <div class="w-full flex justify-end pr-10 ">
       <div>
-        <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 shadow">
-          <dt>
-            <div class="absolute rounded-md {calculateColor()} p-3">
-              <div class="h-6 w-6 text-white">
-                <MoveHorizontal />
-              </div>
+        <div class="relative overflow-hidden rounded-lg bg-white pt-2">
+          <div class="flex gap-6">
+            <div>
+              <dt>
+                <div class="absolute rounded-md {calculateColor()} p-3">
+                  <div class="h-6 w-6 text-white">
+                    <MoveHorizontal />
+                  </div>
+                </div>
+                <p class="ml-16 truncate text-sm font-medium text-gray-500">Abweichung</p>
+              </dt>
+              <dd class="ml-16 flex items-baseline">
+                <p class="text-2xl font-semibold text-neutral">
+                  {numberToFloat(
+                    Math.abs(
+                      participatingMunicipality.avgQuantitativeRating -
+                        participatingMunicipality.avgQualitativeRating
+                    )
+                  )}
+                </p>
+              </dd>
             </div>
-            <p class="ml-16 truncate text-sm font-medium text-gray-500">Abweichung</p>
-          </dt>
-          <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-            <p class="text-2xl font-semibold text-gray-900">
-              {numberToFloat(
-                Math.abs(
-                  participatingMunicipality.avgQuantitativeRating -
-                    participatingMunicipality.avgQualitativeRating
-                )
-              )}
-            </p>
-          </dd>
-          <div>
-            <OneLineDiagram
-              quantitativeRating={participatingMunicipality.avgQuantitativeRating}
-              qualitativeRating={participatingMunicipality.avgQualitativeRating}
-            />
+            <div>
+              <OneLineDiagram
+                quantitativeRating={participatingMunicipality.avgQuantitativeRating}
+                qualitativeRating={participatingMunicipality.avgQualitativeRating}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -83,13 +85,13 @@
     <div class="flex flex-none items-center gap-x-4">
       <a
         href="#"
-        class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+        class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-neutral shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
         >Details</a
       >
       <div class="relative flex-none">
         <button
           type="button"
-          class="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900"
+          class="-m-2.5 block p-2.5 text-gray-500 hover:text-neutral"
           id="options-menu-0-button"
           aria-expanded="false"
           aria-haspopup="true"
