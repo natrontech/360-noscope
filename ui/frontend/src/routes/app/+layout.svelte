@@ -5,7 +5,8 @@
 </script>
 
 <div class="">
-  <div class="absolute bg-primary bg-opacity-30 top-0 -z-10 right-0 bottom-3/4 inset-0" />
+  <div class="absolute bg-primary opacity-30 top-0 -z-10 right-0 bottom-3/4 inset-0" />
+  <div class="absolute bg-white top-0 -z-20 right-0 bottom-3/4 inset-0" />
   <div class="">
     <div
       class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
