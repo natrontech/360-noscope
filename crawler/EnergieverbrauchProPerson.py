@@ -47,7 +47,7 @@ Umelt -> Energie -> Erneuerbar Heizen
 }
 -----------------------
 
-Umelt -> Energie -> Produktion Solarstrom
+Umelt -> Energie -> Fortschritt Ausbau Sonnenenergie
 
 {
     "@timestamp": '2023-08-26 09:46:56.898755',
@@ -57,7 +57,7 @@ Umelt -> Energie -> Produktion Solarstrom
     "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
-    "indicator": "Produktion Solarstrom",
+    "indicator": "Fortschritt Ausbau Sonnenenergie",
     "value": 20
 }
 '''
@@ -86,7 +86,7 @@ KpiDictionary = {
     "emobilityshare": "Anteil Elektroautos",
     "renewableheatingshare": "Erneuerbar Heizen",
     "elecconsumption": "Energieverbrauch pro Person",
-    "pvusage": "Produktion Solarstrom"
+    "pvusage": "Fortschritt Ausbau Sonnenenergie"
 }
 
 def sendDataToElk(Data):
