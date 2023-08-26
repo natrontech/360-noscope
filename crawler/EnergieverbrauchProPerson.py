@@ -5,11 +5,11 @@
 Umwelt -> Energie -> Energieverbrauch pro Person
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Energieverbrauch pro Person",
@@ -20,11 +20,11 @@ Umwelt -> Energie -> Energieverbrauch pro Person
 Umelt -> Energie -> Anteil Elektroautos
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Anteil Elektroautos",
@@ -35,11 +35,11 @@ Umelt -> Energie -> Anteil Elektroautos
 Umelt -> Energie -> Erneuerbar Heizen
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Erneuerbar Heizen",
@@ -50,11 +50,11 @@ Umelt -> Energie -> Erneuerbar Heizen
 Umelt -> Energie -> Produktion Solarstrom
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Produktion Solarstrom",
@@ -67,12 +67,14 @@ import os
 import requests
 from datetime import datetime
 from elasticsearch import Elasticsearch
-from elasticsearch import helpers
 
+ElasticURI = os.environ['ELASTIC_PROTOCOL'] + '://' + os.environ['ELASTIC_HOST'] + ':' + os.environ['ELASTIC_PORT']
 
 ElasticsearchClient = Elasticsearch(
-    hosts=os.environ['ELASTIC_URI'],
-    basic_auth=(os.environ['ELASTIC_USER'], os.environ['ELASTIC_PASSWORD'])
+    ElasticURI,
+    basic_auth=(os.environ['ELASTIC_USER'], os.environ['ELASTIC_PASSWORD']),
+    verify_certs=False,
+    ssl_show_warn=False
 )
 
 
@@ -87,11 +89,10 @@ KpiDictionary = {
     "pvusage": "Produktion Solarstrom"
 }
 
-def createDataObjectsForElk(Data):
-    DataObjects = []
+def sendDataToElk(Data):
     for DataPoint in Data:
         DataObject = {
-            "timestamp": datetime.now().isoformat(),
+            "@timestamp": datetime.utcnow(),
             "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
             "plz": None,
             "municipality": DataPoint["regionName"],
@@ -102,14 +103,6 @@ def createDataObjectsForElk(Data):
             "value": DataPoint["value"] if isinstance(DataPoint["value"], float) else DataPoint["value"]["value"]
         }
   
-        DataObjects.append(DataObject)
-    return DataObjects
+        ElasticsearchClient.index(index=os.environ['ELASTIC_INDEX'], body=DataObject)
 
-
-
-DataObjects = createDataObjectsForElk(Data)
-print(DataObjects[5])
-print(DataObjects[3000])
-print(DataObjects[-1])
-res = helpers.bulk(ElasticsearchClient, DataObjects, index=os.environ['ELASTIC_INDEX'])
-print(res)
+sendDataToElk(Data)
