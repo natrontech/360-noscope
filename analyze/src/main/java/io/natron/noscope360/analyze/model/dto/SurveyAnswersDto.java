@@ -1,4 +1,6 @@
 package io.natron.noscope360.analyze.model.dto;
 
-public record SurveyAnswersDto() {
+import java.util.List;
+
+public record SurveyAnswersDto(String id, List<AnswersDto> answers) {
 }
