@@ -2,6 +2,7 @@
   import type { ParticipatingMunicipality } from "$lib/types/analyze-data";
   import { CircleSlash, CircleSlash2, FileLineChart, LineChart } from "lucide-svelte";
   import RatingLabel from "../RatingLabel.svelte";
+    import OneLineDiagram from "../OneLineDiagram.svelte";
 
   export let participatingMunicipality: ParticipatingMunicipality;
 
@@ -36,7 +37,8 @@
       </div>
     </div>
     <div class="overflow-hidden flex gap-4 border-bet">
-      <div
+      <OneLineDiagram quantitativeRating={participatingMunicipality.avgQuantitativeRating} qualitativeRating={participatingMunicipality.avgQualitativeRating}/>
+      <!-- <div
         class="bg-gray-200 p-2 rounded-lg shadow-lg text-3xl font-semibold tracking-tight text-gray-900 flex justify-center content-center items-center gap-2"
       >
         <p class="truncate text-xs font-medium text-gray-500">
@@ -56,7 +58,7 @@
           {numberToFloat(participatingMunicipality.avgQualitativeRating)}
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="flex flex-none items-center gap-x-4">
     <a
