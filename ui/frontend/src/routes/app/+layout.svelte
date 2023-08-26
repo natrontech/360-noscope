@@ -107,7 +107,7 @@
                 tabIndex={0}
                 class="dropdown-content z-[1] menu mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li><a href="profile">Dein Profil</a></li>
+                <li><a href="/app/profile">Dein Profil</a></li>
                 <li><button on:click={() => logout()}>Abmelden</button></li>
               </ul>
             </div>
