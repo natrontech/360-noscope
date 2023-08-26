@@ -21,7 +21,7 @@
       class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
     >
       <div class="flex-shrink-0">
-        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope.png" alt="360-noscope" on:click={goHome} />
+        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope-white.png" alt="360-noscope" on:click={goHome} />
       </div>
 
       <!-- Separator -->
@@ -45,7 +45,7 @@
             <span class="sr-only">View notifications</span>
             <svg
               class="h-6 w-6"
-              fill="{showNotifications ? 'currentColor' : 'none'}"
+              fill="{showNotifications ? 'white' : 'none'}"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="white"

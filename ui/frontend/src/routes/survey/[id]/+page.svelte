@@ -105,7 +105,7 @@
     <Devider />
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="submit" class="btn btn-primary">Abschicken</button>
+      <button type="submit" class="btn btn-neutral">Abschicken</button>
     </div>
   </form>
 {/if}

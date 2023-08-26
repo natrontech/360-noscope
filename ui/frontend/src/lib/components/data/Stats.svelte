@@ -100,7 +100,7 @@
           <InDecrease difference={stats[0].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Total Subscribers stats</span></a
               >
             </div>
@@ -123,7 +123,7 @@
           <InDecrease difference={stats[1].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Avg. Open Rate stats</span></a
               >
             </div>
@@ -146,7 +146,7 @@
           <InDecrease difference={stats[2].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Avg. Click Rate stats</span></a
               >
             </div>
