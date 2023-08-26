@@ -6,10 +6,12 @@ This is a collection of crawlers which grab the desired data and push it to the 
 
 Each collector reads the following environment variables:
 
-| Variable          | Description                                 |
-| ----------------- | ------------------------------------------- |
-| 'ELASTIC_URI'     | The URI to the ElasticSearch instance.      |
-| 'ELASTIC_API_KEY' | The API key for the ElasticSearch instance. |
+| Variable           | Description                            |
+| ------------------ | -------------------------------------- |
+| 'ELASTIC_URI'      | The URI to the ElasticSearch instance. |
+| 'ELASTIC_USER'     | The elastic username.                  |
+| 'ELASTIC_PASSWORD' | The elastic password.                  |
+| 'ELASTIC_INDEX'    | The index to push the data to.         |
 
 ## Description
 

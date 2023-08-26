@@ -65,13 +65,14 @@ Umelt -> Energie -> Produktion Solarstrom
 
 import os
 import requests
+from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 
 
 ElasticsearchClient = Elasticsearch(
-    host=os.environ['ELASTIC_URI'],
-    api_key=("id", os.environ['ELASTIC_API_KEY'])
+    hosts=os.environ['ELASTIC_URI'],
+    basic_auth=(os.environ['ELASTIC_USER'], os.environ['ELASTIC_PASSWORD'])
 )
 
 
@@ -79,24 +80,36 @@ DataUri = 'https://opendata.geoimpact.ch/energiereporter/energyreporter_municipa
 Data = requests.get(DataUri)
 Data = Data.json()
 
+KpiDictionary = {
+    "emobilityshare": "Anteil Elektroautos",
+    "renewableheatingshare": "Erneuerbar Heizen",
+    "elecconsumption": "Energieverbrauch pro Person",
+    "pvusage": "Produktion Solarstrom"
+}
 
-emobilityshare = []
-renewableheatingshare = []
-elecconsumption = []
-pvusage = [] # Solar Usage
+def createDataObjectsForElk(Data):
+    DataObjects = []
+    for DataPoint in Data:
+        DataObject = {
+            "timestamp": datetime.now().isoformat(),
+            "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
+            "plz": None,
+            "municipality": DataPoint["regionName"],
+            "canton": None,
+            "dimension": "Umwelt",
+            "theme": "Energie",
+            "indicator": KpiDictionary[DataPoint["kpiName"]],
+            "value": DataPoint["value"] if isinstance(DataPoint["value"], float) else DataPoint["value"]["value"]
+        }
+  
+        DataObjects.append(DataObject)
+    return DataObjects
 
-for DataPoint in Data:
-    if DataPoint["kpiName"] == "emobilityshare":
-        emobilityshare.append(DataPoint)
-    elif DataPoint["kpiName"] == "renewableheatingshare":
-        renewableheatingshare.append(DataPoint)
-    elif DataPoint["kpiName"] == "elecconsumption":
-        elecconsumption.append(DataPoint)
-    elif DataPoint["kpiName"] == "pvusage":
-        pvusage.append(DataPoint)
-
-print(pvusage[10])
 
 
-res = helpers.bulk(ElasticsearchClient, <INSERT_DATA_HERE>)
+DataObjects = createDataObjectsForElk(Data)
+print(DataObjects[5])
+print(DataObjects[3000])
+print(DataObjects[-1])
+res = helpers.bulk(ElasticsearchClient, DataObjects, index=os.environ['ELASTIC_INDEX'])
 print(res)
