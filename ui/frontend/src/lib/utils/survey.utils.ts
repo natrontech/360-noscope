@@ -1,4 +1,8 @@
-import type { SurveyQuestionsResponse, SurveysResponse } from "$lib/pocketbase/generated-types";
+import type {
+    SurveyIndicatorsResponse,
+    SurveyQuestionsResponse,
+    SurveysResponse
+} from '$lib/pocketbase/generated-types';
 import type { QuestionType } from "$lib/types/generic";
 
 export function getQuestions(survey: SurveysResponse): SurveyQuestionsResponse[] {
@@ -11,4 +15,10 @@ export function getQuestionType(question: SurveyQuestionsResponse): QuestionType
     // ToDo how to access correctly?
     // @ts-ignore
     return question.expand.survey_question_type.name;
+}
+
+export function getQuestionIndicator(question: SurveyQuestionsResponse): SurveyIndicatorsResponse {
+    // ToDo how to access correctly?
+    // @ts-ignore
+    return question.expand.survey_indicator;
 }

@@ -12,7 +12,12 @@
 
   async function submit() {
     sent = true;
-    console.log({ questions: data.questions, surveyId: data.survey.id, municipalityId: data.municipality.id });
+    const result = {
+        id: data.survey.id,
+        questions: data.questions.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator })),
+    }
+    // ToDo: send result to backend
+    console.log(result);
   }
 </script>
 
