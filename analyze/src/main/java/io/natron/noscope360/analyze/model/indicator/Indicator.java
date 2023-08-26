@@ -3,17 +3,20 @@ package io.natron.noscope360.analyze.model.indicator;
 import io.natron.noscope360.analyze.model.enums.Dimension;
 import io.natron.noscope360.analyze.model.enums.Theme;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.function.Function;
-
 
 public abstract class Indicator<T> {
 
     protected Dimension dimension;
     protected Theme theme;
     protected String name;
-    protected LocalDate date;
+    protected String canton;
+    protected String municipality;
+    protected int plz;
+    protected String source;
+    protected LocalDateTime timestamp;
 
     protected Map<String, T> values;
 

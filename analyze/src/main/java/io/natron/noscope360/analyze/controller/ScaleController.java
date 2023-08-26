@@ -1,7 +1,6 @@
 package io.natron.noscope360.analyze.controller;
 
 import io.natron.noscope360.analyze.model.enums.Dimension;
-import io.natron.noscope360.analyze.model.enums.Theme;
 import io.natron.noscope360.analyze.model.indicator.Indicator;
 import io.natron.noscope360.analyze.service.ScaleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -27,7 +27,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class ScaleController {
 
     private static final Logger log = LoggerFactory.getLogger(ScaleController.class);
-
     private final ScaleService scaleService;
 
     /**
@@ -72,7 +71,7 @@ public class ScaleController {
     })
     @GetMapping(path = "/dimensions/{dimension}/themes", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<Theme> getThemes(@PathVariable String dimension) {
+    public Map<String, String> getThemes(@PathVariable String dimension) {
         log.info("Retrieving all themes of a given dimension.");
         return scaleService.getThemes(dimension);
     }

@@ -11,8 +11,7 @@ public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
             Double developmentValue,
             Double eCars,
             Double solar,
-            Double renewableHeating)
-    {
+            Double renewableHeating) {
         super();
 
         values.put(DEVELOPMENT_MAP_KEY, developmentValue);
@@ -28,11 +27,11 @@ public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
 
     /**
      * Fortschritt Ausbau Sonnenenergie:
-     *  9>26%
-     *  7= 20%
-     *  5=14%
-     *  3= 8%
-     *  1 < 2.0%
+     * 9>26%
+     * 7= 20%
+     * 5=14%
+     * 3= 8%
+     * 1 < 2.0%
      */
     private Number mapDevelopment(Double input) {
 
@@ -51,11 +50,11 @@ public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
 
     /**
      * Anteil Elektroautos:
-     *  10>15%
-     *  8=10%
-     *  6= 8%
-     *  4= 6%
-     *  2=4%
+     * 10>15%
+     * 8=10%
+     * 6= 8%
+     * 4= 6%
+     * 2=4%
      */
     private Number mapECars(Double input) {
 
@@ -74,11 +73,11 @@ public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
 
     /**
      * Produktion Solarstrom
-     *  10>70%
-     *  8=50%
-     *  6=30%
-     *  4=15%
-     *  2=5%
+     * 10>70%
+     * 8=50%
+     * 6=30%
+     * 4=15%
+     * 2=5%
      */
     private Number mapSolar(Double input) {
 
@@ -97,11 +96,11 @@ public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
 
     /**
      * Erneuerbar Heizen
-     *  10>95%
-     *  8=80%
-     *  6=60%
-     *  4= 40%
-     *  2= 20%
+     * 10>95%
+     * 8=80%
+     * 6=60%
+     * 4= 40%
+     * 2= 20%
      */
     private Number mapRenewableHeating(Double input) {
 

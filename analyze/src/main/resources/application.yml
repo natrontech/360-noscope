@@ -1,14 +1,15 @@
-noscope360:
-  elastic:
-    host: ${NOSCOPE360_ELASTIC_HOST}
-    port: ${NOSCOPE360_ELASTIC_PORT}
-    username: ${NOSCOPE360_ELASTIC_USERNAME}
-    password: ${NOSCOPE360_ELASTIC_PASSWORD}
-
 spring:
   mvc:
     problemdetails:
       enabled: true
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  elasticsearch:
+    uris: ${ELASTIC_URI}
+    username: ${ELASTIC_USERNAME}
+    password: ${ELASTIC_PASSWORD}
 
 springdoc:
   api-docs:
@@ -18,8 +19,8 @@ springdoc:
 
 admin:
   security:
-    username: ${ADMIN_SECURITY_USERNAME}
-    password: ${ADMIN_SECURITY_PASSWORD}
+    username: ${SECURITY_USERNAME}
+    password: ${SECURITY_PASSWORD}
 
 server:
-  port: 8080
+  port: 8000
