@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+  import { onMount } from "svelte";
 
   interface RatingLabel {
     label: string;
@@ -8,10 +8,8 @@
 
   let rating: RatingLabel = {
     label: "",
-    color: "",
+    color: ""
   };
-
-
 
   function driftRating(quantitative: number, qualitative: number) {
     // drift is absolute value of difference between quantitative and qualitative rating
@@ -25,27 +23,25 @@
     // round drift to 1 decimal place
     drift = Math.round(drift * 10) / 10;
 
-    console.log(drift);
-
     if (drift >= 0 && drift <= 0.5) {
       rating = {
         label: "sehr gut",
-        color: "green",
+        color: "green"
       };
     } else if (drift > 0.5 && drift <= 1) {
       rating = {
         label: "gut",
-        color: "yellow",
+        color: "yellow"
       };
     } else if (drift > 1 && drift <= 1.5) {
       rating = {
         label: "genügend",
-        color: "orange",
+        color: "orange"
       };
     } else if (drift > 1.5) {
       rating = {
         label: "ungenügend",
-        color: "red",
+        color: "red"
       };
     }
   }
@@ -55,15 +51,11 @@
 
   onMount(() => {
     driftRating(quantitativeRating, qualitativeRating);
-    console.log(rating);
   });
-
-
-
 </script>
 
 <p
-  class="rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset text-{rating.color}-700 bg-{rating.color}-50 ring-{rating.color}-600/20"
+  class="rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium  text-white bg-{rating.color}-500 "
 >
-{rating.label}
+  {rating.label}
 </p>

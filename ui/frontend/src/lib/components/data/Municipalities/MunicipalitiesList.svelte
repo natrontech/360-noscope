@@ -9,6 +9,6 @@
 
 <ul role="list" class="divide-y divide-gray-100">
   {#each localApiMunicipalitiesResponse.municipalities as participatingMunicipality}
-    <MunicipalitiesListItem participatingMunicipality={participatingMunicipality} />
+    <MunicipalitiesListItem {participatingMunicipality} />
   {/each}
 </ul>

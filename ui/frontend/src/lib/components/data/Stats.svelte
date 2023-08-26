@@ -88,7 +88,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[0].icon} />
             </div>
@@ -111,7 +111,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[1].icon} />
             </div>
@@ -134,7 +134,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[2].icon} />
             </div>
