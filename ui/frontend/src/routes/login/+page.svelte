@@ -1,25 +1,28 @@
-<!--
-  This example requires some changes to your config:
+<script lang="ts">
+  import { goto } from "$app/navigation";
+  import { login } from "$lib/pocketbase";
+  import { alertOnFailure } from "$lib/pocketbase/ui";
+  import toast from "svelte-french-toast";
 
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
+  const DEFAULTS = {
+    email: "",
+    password: ""
+  };
+  let user = { ...DEFAULTS };
+  let loading = false;
+
+  async function submit() {
+    loading = true;
+    await alertOnFailure(async function () {
+      await login(user.email, user.password);
+      toast.success("Logged in successfully!");
+      goto("/app");
+    }).finally(() => {
+      loading = false;
+    });
   }
-  ```
--->
-<!--
-  This example requires updating your template:
+</script>
 
-  ```
-  <html class="h-full bg-gray-50">
-  <body class="h-full">
-  ```
--->
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <img class="mx-auto h-28 w-auto" src="./images/360-noscope.png" alt="360-noscope" />
@@ -31,13 +34,13 @@
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
     <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" on:submit|preventDefault={submit} method="POST">
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900"
             >Email address</label
           >
           <div class="mt-2">
-            <input type="email" class="input input-bordered w-full" />
+            <input type="email" class="input input-bordered w-full" bind:value={user.email} />
           </div>
         </div>
 
@@ -46,7 +49,12 @@
             >Password</label
           >
           <div class="mt-2">
-            <input type="password" placeholder="" class="input input-bordered w-full" />
+            <input
+              type="password"
+              placeholder=""
+              class="input input-bordered w-full"
+              bind:value={user.password}
+            />
           </div>
         </div>
 
@@ -59,7 +67,7 @@
           </div>
 
           <div class="text-sm leading-6">
-            <a href="#" class="font-semibold ">Forgot password?</a>
+            <a href="/fake" class="font-semibold ">Forgot password?</a>
           </div>
         </div>
 
@@ -80,7 +88,7 @@
 
         <div class="mt-6 grid grid-cols-2 gap-4">
           <a
-            href="#"
+            href="/fake"
             class="flex w-full items-center justify-center gap-3 rounded-md bg-red-500 px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
           >
             <svg
@@ -99,7 +107,7 @@
           </a>
 
           <a
-            href="#"
+            href="/fake"
             class="flex w-full items-center justify-center gap-3 rounded-md bg-blue-500 px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
           >
             <svg
