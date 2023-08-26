@@ -25,7 +25,7 @@
 
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <img class="mx-auto h-28 w-auto" src="./images/360-noscope.png" alt="360-noscope" />
+    <img class="mx-auto h-28 w-auto" src="/images/360-noscope.png" alt="360-noscope" />
     <h2 class="mt-6 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900">
       Sign in to <br />
       <span class="font-bold">360-noscope</span>
