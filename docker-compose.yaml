@@ -2,10 +2,11 @@ version: '3.9'
 services:
 
   analyzer:
-    # image: ghcr.io/natrontech/360-analyzer:latest
-    user: '1001'
-    platform: "linux/amd64"
+    #image: ghcr.io/natrontech/360-noscope-analyzer:latest
     build: ./analyze
+    user: '1001'
+    # needed for use with mac m1
+    platform: "linux/amd64"
     container_name: 360_analyzer
     ports:
       - "8000:8000"
@@ -19,8 +20,9 @@ services:
       SECURITY_PASSWORD: securepassword
 
   frontend:
-    # image: ghcr.io/natrontech/360-frontend:latest
+    #image: ghcr.io/natrontech/360-noscope-frontend:latest
     build: ./ui
+    # needed for use with mac m1
     platform: "linux/amd64"
     container_name: 360_frontend
     ports:
