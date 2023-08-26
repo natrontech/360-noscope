@@ -1,12 +1,14 @@
 <script lang="ts">
-    import { logout } from "$lib/pocketbase";
+  import ShowSurveyToggle from "$lib/components/base/ShowSurveyToggle.svelte";
+  import { logout } from "$lib/pocketbase";
   import { Search } from "lucide-svelte";
 </script>
 
-<div>
+<div class="">
+  <div class="absolute bg-primary bg-opacity-30 top-0 -z-10 right-0 bottom-3/4 inset-0" />
   <div class="">
     <div
-      class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+      class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
     >
       <div class="flex-shrink-0">
         <img class="block h-12 w-12" src="/images/360-noscope.png" alt="360-noscope" />
@@ -18,17 +20,17 @@
       <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
         <form class="relative flex flex-1" action="#" method="GET">
           <label for="search-field" class="sr-only">Search</label>
-          <Search class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" />
+          <Search class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 " />
           <input
             id="search-field"
-            class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+            class="block h-full w-full border-0 py-0 pl-8 pr-0 bg-transparent focus:ring-0 sm:text-sm"
             placeholder="Search..."
             type="search"
             name="search"
           />
         </form>
         <div class="flex items-center gap-x-4 lg:gap-x-6">
-          <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
+          <button type="button" class="-m-2.5 p-2.5">
             <span class="sr-only">View notifications</span>
             <svg
               class="h-6 w-6"
@@ -54,7 +56,7 @@
             <div class="dropdown dropdown-bottom dropdown-end">
               <button
                 type="button"
-                class="-m-1.5 flex items-center p-2.5 btn bg-transparent border-none"
+                class="-m-1.5 flex items-center p-2.5 "
                 id="user-menu-button"
                 aria-expanded="false"
                 aria-haspopup="true"
@@ -88,44 +90,27 @@
 
               <ul
                 tabIndex={0}
-                class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                class="dropdown-content z-[1] menu mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li><a href="profile">Your profile</a></li>
                 <li><button on:click={() => logout()}>Sign out</button></li>
               </ul>
             </div>
-
-            <!-- <div
-              class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="user-menu-button"
-              tabindex="-1"
-            >
-              <a
-                href="#"
-                class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-0">Your profile</a
-              >
-              <a
-                href="#"
-                class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-1">Sign out</a
-              >
-            </div> -->
           </div>
         </div>
       </div>
     </div>
 
-    <main class="py-10">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <slot />
-      </div>
-    </main>
+    <!-- Controls -->
+    <div class="flex content-center h-20 px-10">
+      <ShowSurveyToggle />
+    </div>
+
+    <!-- Main content -->
+    <div
+      class="absolute top-40 bottom-10 left-10 right-10 bg-white p-10 overflow-y-scroll scrollbar-thin rounded-lg shadow-md"
+    >
+      <slot />
+    </div>
   </div>
 </div>
