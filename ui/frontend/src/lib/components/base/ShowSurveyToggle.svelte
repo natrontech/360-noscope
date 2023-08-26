@@ -9,7 +9,7 @@
       <button
               on:click={() => showSurvey.set(false)}
               class="btn
-      {$showSurvey ? '' : 'btn-neutral'}"
+      {$showSurvey ? 'btn-neutral border-white' : ''}"
       >
         <Castle />
         Gemeinden</button
@@ -17,7 +17,7 @@
       <button
               on:click={() => showSurvey.set(true)}
               class="btn
-    {$showSurvey ? 'btn-neutral' : ''}"
+    {$showSurvey ? '' : 'btn-neutral border-white'}"
       >
         <ClipboardList />
         Umfragen</button

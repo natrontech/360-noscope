@@ -13,29 +13,29 @@
   let showNotifications = false;
 </script>
 
-<div class="">
-  <div class="absolute bg-primary opacity-30 top-0 -z-10 right-0 bottom-3/4 inset-0" />
+<div>
+  <div class="absolute bg-neutral top-0 -z-10 right-0 bottom-3/4 inset-0" />
   <div class="absolute bg-white top-0 -z-20 right-0 bottom-3/4 inset-0" />
-  <div class="">
+  <div>
     <div
       class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
     >
       <div class="flex-shrink-0">
-        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope.png" alt="360-noscope" on:click={goHome} />
+        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope-white.png" alt="360-noscope" on:click={goHome} />
       </div>
 
       <!-- Separator -->
-      <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
+      <div class="h-6 w-px bg-white lg:hidden" aria-hidden="true" />
 
       <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
         <form class="relative flex flex-1" action="#" method="GET">
           <label for="search-field" class="sr-only">Search</label>
-          <Search class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 " />
+          <Search class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-white" />
           <input
             id="search-field"
-            class="block h-full w-full border-0 py-0 pl-8 pr-0 bg-transparent focus:ring-0 sm:text-sm"
+            class="block h-full w-full border-0 py-0 pl-8 pr-0 bg-transparent focus:ring-0 sm:text-sm placeholder-gray-50 text-white"
             placeholder="Suche..."
-            type="search"
+            type="text"
             name="search"
           />
         </form>
@@ -45,10 +45,10 @@
             <span class="sr-only">View notifications</span>
             <svg
               class="h-6 w-6"
-              fill="{showNotifications ? 'currentColor' : 'none'}"
+              fill="{showNotifications ? 'white' : 'none'}"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="currentColor"
+              stroke="white"
               aria-hidden="true"
             >
               <path
@@ -64,7 +64,7 @@
           </div>
 
           <!-- Separator -->
-          <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
+          <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-white" aria-hidden="true" />
 
           <!-- Profile dropdown -->
           <div class="relative">
@@ -79,17 +79,17 @@
               >
                 <span class="sr-only">Open user menu</span>
                 <img
-                  class="h-8 w-8 rounded-full bg-gray-50"
+                  class="h-8 w-8 rounded-full bg-white"
                   src={avatar}
                   alt=""
                 />
                 <span class="hidden lg:flex lg:items-center">
                   <span
-                    class="ml-4 text-sm font-semibold leading-6 text-gray-900"
+                    class="ml-4 text-sm font-semibold leading-6 text-white"
                     aria-hidden="true">{client.authStore.model?.name}</span
                   >
                   <svg
-                    class="ml-2 h-5 w-5 text-gray-400"
+                    class="ml-2 h-5 w-5 text-white"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden="true"

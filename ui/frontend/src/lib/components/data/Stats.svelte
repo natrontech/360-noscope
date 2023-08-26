@@ -1,15 +1,28 @@
 <script lang="ts">
   import showSurvey from "$lib/stores/toggle";
-  import { Calendar, CalendarCheck, Castle, ClipboardCheck, ClipboardList, Star } from "lucide-svelte";
-    import InDecrease from "./InDecrease.svelte";
+  import {
+    CalendarCheck,
+    Castle,
+    ClipboardList,
+    FileLineChart,
+    LineChart,
+  } from "lucide-svelte";
+  import InDecrease from "./InDecrease.svelte";
+  import type { MunicipalitiesStats, SurveyStats } from "$lib/types/analyze-data";
 
-  let totalSurveys = 20;
-  let avgSurveyPerDay = 2;
-  let avgScorePerSurvey = 8.2;
+  // TODO: fetch from backend /api/municipalities
+  let municipalityStats: MunicipalitiesStats = {
+    totalMunicipalities: 300,
+    avgQuantitativeRating: 6.8,
+    avgQualitativeRating: 7.3
+  };
 
-  let totalMunicipalities = 10;
-  let avgSurveyPerMunicipality = 2;
-  let avgScorePerMunicipality = 6.8;
+  let surveyStats: SurveyStats = {
+    totalSurveys: 420,
+    avgSurveysPerDay: 2.3,
+    avgQualitativeRating: 7.3,
+  };
+
   let avgScoreSurveyDrift = 1.4;
 
   interface Stats {
@@ -25,46 +38,45 @@
     stats = [
       {
         name: "Total ausgefüllte Umfragen",
-        value: totalSurveys,
-        difference: -2,
+        value: surveyStats.totalSurveys,
+        difference: -69,
         icon: ClipboardList
       },
       {
-        name: "Durchschnittliche Umfragen pro Tag",
-        value: avgSurveyPerDay,
-        difference: 2,
+        name: "Umfragen pro Tag",
+        value: surveyStats.avgSurveysPerDay,
+        difference: -0.12,
         icon: CalendarCheck
       },
       {
-        name: "Durchschnittliche Bewertung pro Umfrage",
-        value: avgScorePerSurvey,
-        difference: 2,
-        icon: Star
+        name: "Qualitative Bewertung",
+        value: surveyStats.avgQualitativeRating,
+        difference: 0.3,
+        icon: FileLineChart
       }
     ];
   } else {
     stats = [
       {
         name: "Total Gemeinden",
-        value: totalMunicipalities,
+        value: municipalityStats.totalMunicipalities,
         difference: 2,
         icon: Castle
       },
       {
-        name: "Durchschnittliche Umfragen pro Gemeinde",
-        value: avgSurveyPerMunicipality,
-        difference: 2,
-        icon: ClipboardCheck
+        name: "Quantitative Bewertung",
+        value: municipalityStats.avgQuantitativeRating,
+        difference: -0.2,
+        icon: LineChart
       },
       {
-        name: "Durchschnittliche Bewertung pro Gemeinde",
-        value: avgScorePerMunicipality,
-        difference: -0.2,
-        icon: Star
+        name: "Qualitative Bewertung",
+        value: municipalityStats.avgQualitativeRating,
+        difference: 0.3,
+        icon: FileLineChart
       },
     ];
   }
-
 </script>
 
 {#key showSurvey}
@@ -76,7 +88,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[0].icon} />
             </div>
@@ -88,7 +100,7 @@
           <InDecrease difference={stats[0].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Total Subscribers stats</span></a
               >
             </div>
@@ -99,7 +111,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[1].icon} />
             </div>
@@ -111,7 +123,7 @@
           <InDecrease difference={stats[1].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Avg. Open Rate stats</span></a
               >
             </div>
@@ -122,7 +134,7 @@
         class="relative overflow-hidden rounded-lg bg-white px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6"
       >
         <dt>
-          <div class="absolute rounded-md bg-primary p-3">
+          <div class="absolute rounded-md bg-neutral p-3">
             <div class="h-6 w-6 text-white">
               <svelte:component this={stats[2].icon} />
             </div>
@@ -134,7 +146,7 @@
           <InDecrease difference={stats[2].difference} />
           <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
             <div class="text-sm">
-              <a href="#" class="font-medium text-primary hover:text-primary"
+              <a href="#" class="font-medium text-neutral hover:text-black"
                 >Details<span class="sr-only"> Avg. Click Rate stats</span></a
               >
             </div>
