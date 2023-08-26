@@ -32,12 +32,13 @@
 
 {#if data.survey && !sent}
   <h1>{data.survey.name}</h1>
+  <h2>{data.municipality.plz} {data.municipality.name}</h2>
 
   <Devider />
 
   <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-  <h2>Offene Fragen</h2>
+  <h3>Offene Fragen</h3>
 
   <div class="form-control mb-5">
     <label class="label">
@@ -55,7 +56,7 @@
 
   <Devider />
 
-  <h2>Qualitative Fragen</h2>
+  <h3>Qualitative Fragen</h3>
 
   <form on:submit|preventDefault={submit}>
     <div>
@@ -69,13 +70,13 @@
 
     <Devider />
 
-   <h2>Demografische Fragen</h2>
+   <h3>Demografische Fragen</h3>
 
     <div class="form-control w-full max-w-xs mb-5">
       <label class="label">
         <span class="label-text">Geschlecht</span>
       </label>
-      <select class="select select-bordered">
+      <select required class="select select-bordered">
         <option disabled selected>Auswählen</option>
         <option>Männlich</option>
         <option>Weiblich</option>
@@ -87,7 +88,7 @@
       <label class="label">
         <span class="label-text">Alter</span>
       </label>
-      <input type="number" min="0" class="input input-bordered w-full max-w-xs" />
+      <input type="number" min="0" required class="input input-bordered w-full max-w-xs" />
     </div>
 
     <Devider />
