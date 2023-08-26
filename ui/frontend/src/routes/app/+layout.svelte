@@ -46,7 +46,7 @@
                 <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Grindelwald</a>
                 <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Nachhaltigkeitsumfrage 2022</a>
                 <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Spiez</a>
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeine Interlaken</a>
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Interlaken</a>
                 <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Testumfrage 2023</a>
               </div>
             </div>
