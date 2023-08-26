@@ -1,9 +1,6 @@
 <script lang="ts">
   import showSurvey from "$lib/stores/toggle";
   import { Castle, ClipboardList } from "lucide-svelte";
-  import { get } from "svelte/store";
-
-  $: console.log(get(showSurvey));
 </script>
 
 <div class="flex justify-between items-center">
