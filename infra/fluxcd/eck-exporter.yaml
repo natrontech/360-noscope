@@ -33,7 +33,7 @@ spec:
       all: true
       indices: true
       sslSkipVerify: true
-      uri: https://elasticsearch-es-http:9200
+      uri: http://elasticsearch-es-http:9200
     extraEnvSecrets:
       ES_PASSWORD:
         key: elastic
