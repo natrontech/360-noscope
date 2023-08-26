@@ -14,9 +14,11 @@
     sent = true;
     const result = {
         id: data.survey?.id,
-        questions: data.questions?.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator })),
+        municipalityId: data.municipality?.id,
+        questions: data.questions?.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator, theme: q.theme, dimension: q.dimension})),
     }
     // TODO: send result to backend
+    // Missing municipalityId, theme, dimension
     console.log(result);
   }
 </script>

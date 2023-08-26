@@ -6,7 +6,13 @@ import type {
     SurveyQuestionsResponse,
     SurveyParticipantsResponse, MunicipalitiesResponse
 } from '$lib/pocketbase/generated-types';
-import { getQuestionIndicator, getQuestions, getQuestionType } from '$lib/utils/survey.utils';
+import {
+    getQuestionDomain,
+    getQuestionIndicator,
+    getQuestions,
+    getQuestionTheme,
+    getQuestionType
+} from '$lib/utils/survey.utils';
 import type { QuestionUi } from "$lib/types/generic";
 import { goto } from '$app/navigation';
 export const load: PageLoad = async ({ params }) => {
@@ -16,13 +22,23 @@ export const load: PageLoad = async ({ params }) => {
         const participant: SurveyParticipantsResponse = await client.collection("survey_participants").getOne(id);
         const municipality: MunicipalitiesResponse = await client.collection("municipalities").getOne(participant.municipality);
         const survey: SurveysResponse = await client.collection("surveys").getOne(participant.survey, {
-            expand: "survey_questions.survey_indicator.survey_theme,survey_questions.survey_question_type"});
+            expand: "survey_questions.survey_indicator.survey_theme.survey_dimension,survey_questions.survey_question_type"});
 
         const questions: QuestionUi[] = getQuestions(survey).map(
             (question: SurveyQuestionsResponse) => {
                 const type = getQuestionType(question);
                 const indicator = getQuestionIndicator(question);
-                return { questionId: question.id, question: question.question, type, indicator: indicator.name, answer: 0 };
+                const theme = getQuestionTheme(question);
+                const dimension = getQuestionDomain(question);
+                return {
+                    questionId: question.id,
+                    question: question.question,
+                    type, indicator:
+                    indicator.name,
+                    theme: theme.name,
+                    dimension: dimension.name,
+                    answer: 0
+                };
             }
         );
 
