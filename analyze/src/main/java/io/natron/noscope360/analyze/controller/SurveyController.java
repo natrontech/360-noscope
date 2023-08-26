@@ -1,9 +1,9 @@
 package io.natron.noscope360.analyze.controller;
 
-import io.natron.noscope360.analyze.model.dto.Survey;
-import io.natron.noscope360.analyze.model.dto.SurveyAnswers;
-import io.natron.noscope360.analyze.model.dto.SurveyOverview;
-import io.natron.noscope360.analyze.model.dto.SurveyStats;
+import io.natron.noscope360.analyze.model.dto.SurveyAnswersDto;
+import io.natron.noscope360.analyze.model.dto.SurveyDto;
+import io.natron.noscope360.analyze.model.dto.SurveyOverviewDto;
+import io.natron.noscope360.analyze.model.dto.SurveyStatsDto;
 import io.natron.noscope360.analyze.service.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -33,7 +33,7 @@ public class SurveyController {
     @Operation(summary = "Retrieve overview data of all surveys.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<SurveyOverview> getSurveys() {
+    public List<SurveyOverviewDto> getSurveys() {
         log.info("Retrieve overview data of all surveys.");
         return surveyService.getSurveys();
     }
@@ -41,7 +41,7 @@ public class SurveyController {
     @Operation(summary = "Retrieve stats of all surveys.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(path = "/stats", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public SurveyStats getSurveyStats() {
+    public SurveyStatsDto getSurveyStats() {
         log.info("Retrieve stats of all surveys.");
         return surveyService.getSurveyStats();
     }
@@ -49,16 +49,16 @@ public class SurveyController {
     @Operation(summary = "Retrieve data of a specific surveys.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Survey getSurveyById(@PathVariable String id) {
+    public SurveyDto getSurveyById(@PathVariable String id) {
         log.info("Retrieve data of a specific surveys.");
         return surveyService.getSurveyById();
     }
 
-    @Operation(summary = "Make a survey answers for a survey.")
+    @Operation(summary = "Make a answers for a survey.")
     @PostMapping(path = "/{id}/answers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public SurveyAnswers makeSurveyAnswers(@PathVariable String id, @Valid @RequestBody SurveyAnswers surveyAnswers) {
+    public SurveyAnswersDto makeSurveyAnswers(@PathVariable String id, @Valid @RequestBody SurveyAnswersDto surveyAnswersDto) {
         log.info("Make a survey answers for a survey.");
-        return surveyService.makeSurveyAnswers(id, surveyAnswers);
+        return surveyService.makeSurveyAnswers(id, surveyAnswersDto);
     }
 }

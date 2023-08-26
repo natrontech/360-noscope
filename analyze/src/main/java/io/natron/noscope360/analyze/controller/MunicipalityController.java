@@ -1,8 +1,8 @@
 package io.natron.noscope360.analyze.controller;
 
-import io.natron.noscope360.analyze.model.dto.Municipality;
-import io.natron.noscope360.analyze.model.dto.MunicipalityOverview;
-import io.natron.noscope360.analyze.model.dto.MunicipalityStats;
+import io.natron.noscope360.analyze.model.dto.MunicipalityDto;
+import io.natron.noscope360.analyze.model.dto.MunicipalityOverviewDto;
+import io.natron.noscope360.analyze.model.dto.MunicipalityStatsDto;
 import io.natron.noscope360.analyze.service.MunicipalityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -29,7 +29,7 @@ public class MunicipalityController {
     @Operation(summary = "Retrieve overview data of all municipalities.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<MunicipalityOverview> getMunicipalities() {
+    public List<MunicipalityOverviewDto> getMunicipalities() {
         log.info("Retrieve overview data of all municipalities.");
         return municipalityService.getMunicipalities();
     }
@@ -37,7 +37,7 @@ public class MunicipalityController {
     @Operation(summary = "Retrieve stats of all municipalities.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(path = "/stats", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public MunicipalityStats getMunicipalitiesStats() {
+    public MunicipalityStatsDto getMunicipalitiesStats() {
         log.info("Retrieve stats of all municipalities.");
         return municipalityService.getMunicipalitiesStats();
     }
@@ -45,7 +45,7 @@ public class MunicipalityController {
     @Operation(summary = "Retrieve data of a specific municipality.", security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Municipality getMunicipalityById(@PathVariable String id) {
+    public MunicipalityDto getMunicipalityById(@PathVariable String id) {
         log.info("Retrieve data of a specific municipality.");
         return municipalityService.getMunicipalityById();
     }

@@ -9,11 +9,11 @@ package io.natron.noscope360.analyze.model.indicator;
  * Skala für Energieverbrauch orientiert sich am Idealwert: der 2000 Watt
  * Gesellschaft sowie dem Minimum, Maximum und Mittelwert der Schweiz.
  */
-public class EnvironmentEnergyConsumptionIndicator extends Indicator<Double> {
+public class EnvironmentEnergyConsumptionAbstractQuantitativeData extends AbstractQuantitativeData<Double> {
 
     public static final String CONSUMPTION_MAP_KEY = "consumption";
 
-    public EnvironmentEnergyConsumptionIndicator(Double value) {
+    public EnvironmentEnergyConsumptionAbstractQuantitativeData(Double value) {
         super();
 
         values.put(CONSUMPTION_MAP_KEY, value);

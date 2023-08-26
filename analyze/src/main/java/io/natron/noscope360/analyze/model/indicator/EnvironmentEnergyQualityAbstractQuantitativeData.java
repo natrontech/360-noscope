@@ -1,13 +1,13 @@
 package io.natron.noscope360.analyze.model.indicator;
 
-public class EnvironmentEnergyQualityIndicator extends Indicator<Double> {
+public class EnvironmentEnergyQualityAbstractQuantitativeData extends AbstractQuantitativeData<Double> {
 
     public static final String DEVELOPMENT_MAP_KEY = "development";
     public static final String ECARS_MAP_KEY = "ecars";
     public static final String SOLAR_MAP_KEY = "solar";
     public static final String RENEWABLE_HEATING_MAP_KEY = "renewable_heating";
 
-    public EnvironmentEnergyQualityIndicator(
+    public EnvironmentEnergyQualityAbstractQuantitativeData(
             Double developmentValue,
             Double eCars,
             Double solar,

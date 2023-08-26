@@ -1,8 +1,8 @@
 package io.natron.noscope360.analyze.service;
 
-import io.natron.noscope360.analyze.model.dto.Municipality;
-import io.natron.noscope360.analyze.model.dto.MunicipalityOverview;
-import io.natron.noscope360.analyze.model.dto.MunicipalityStats;
+import io.natron.noscope360.analyze.model.dto.MunicipalityDto;
+import io.natron.noscope360.analyze.model.dto.MunicipalityOverviewDto;
+import io.natron.noscope360.analyze.model.dto.MunicipalityStatsDto;
 import io.natron.noscope360.analyze.repository.QuantitativeDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +20,15 @@ public class MunicipalityService {
         this.quantitativeDataRepository = quantitativeDataRepository;
     }
 
-    public List<MunicipalityOverview> getMunicipalities() {
+    public List<MunicipalityOverviewDto> getMunicipalities() {
         return null;
     }
 
-    public MunicipalityStats getMunicipalitiesStats() {
+    public MunicipalityStatsDto getMunicipalitiesStats() {
         return null;
     }
 
-    public Municipality getMunicipalityById() {
+    public MunicipalityDto getMunicipalityById() {
         return null;
     }
 }

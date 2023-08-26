@@ -1,9 +1,9 @@
 package io.natron.noscope360.analyze.service;
 
-import io.natron.noscope360.analyze.model.dto.Survey;
-import io.natron.noscope360.analyze.model.dto.SurveyAnswers;
-import io.natron.noscope360.analyze.model.dto.SurveyOverview;
-import io.natron.noscope360.analyze.model.dto.SurveyStats;
+import io.natron.noscope360.analyze.model.dto.SurveyAnswersDto;
+import io.natron.noscope360.analyze.model.dto.SurveyDto;
+import io.natron.noscope360.analyze.model.dto.SurveyOverviewDto;
+import io.natron.noscope360.analyze.model.dto.SurveyStatsDto;
 import io.natron.noscope360.analyze.repository.QualitativeDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,19 +21,19 @@ public class SurveyService {
         this.qualitativeDataRepository = qualitativeDataRepository;
     }
 
-    public List<SurveyOverview> getSurveys() {
+    public List<SurveyOverviewDto> getSurveys() {
         return null;
     }
 
-    public SurveyStats getSurveyStats() {
+    public SurveyStatsDto getSurveyStats() {
         return null;
     }
 
-    public Survey getSurveyById() {
+    public SurveyDto getSurveyById() {
         return null;
     }
 
-    public SurveyAnswers makeSurveyAnswers(String id, SurveyAnswers surveyAnswers) {
+    public SurveyAnswersDto makeSurveyAnswers(String id, SurveyAnswersDto surveyAnswersDto) {
         return null;
     }
 }
