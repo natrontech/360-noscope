@@ -10,9 +10,9 @@
 
   let sent = false;
 
-  function submit() {
+  async function submit() {
     sent = true;
-    console.log(data.questions);
+    console.log({ questions: data.questions, surveyId: data.survey.id, municipalityId: data.municipality.id });
   }
 </script>
 
@@ -30,7 +30,13 @@
   </div>
 {/if}
 
-{#if data.survey && !sent}
+{#if !data.participant.canSubmit}
+  <div class="inline-flex items-center w-full flex justify-center">
+    <h1 class="m-0">Umfrage ist geschlossen. Keine Antworten mehr möglich.</h1>
+  </div>
+{/if}
+
+{#if data.survey && !sent && data.participant.canSubmit}
   <h1>{data.survey.name}</h1>
   <h2>{data.municipality.plz} {data.municipality.name}</h2>
 
