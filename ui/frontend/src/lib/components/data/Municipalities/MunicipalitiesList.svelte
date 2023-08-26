@@ -1,16 +1,14 @@
 <script lang="ts">
+  import { apiMunicipalitiesResponse } from "$lib/mock/analyze-data";
+  import type { ApiMunicipalitiesResponse } from "$lib/types/analyze-data";
   import MunicipalitiesListItem from "./MunicipalitiesListItem.svelte";
 
   // TODO: fetch from backend /api/municipalities
-  interface Municipality {
-    id: string;
-    name: string;
-  }
-
-
-
+  let localApiMunicipalitiesResponse: ApiMunicipalitiesResponse = apiMunicipalitiesResponse;
 </script>
 
 <ul role="list" class="divide-y divide-gray-100">
-  <MunicipalitiesListItem />
+  {#each localApiMunicipalitiesResponse.municipalities as participatingMunicipality}
+    <MunicipalitiesListItem participatingMunicipality={participatingMunicipality} />
+  {/each}
 </ul>

@@ -1,14 +1,11 @@
 <script lang="ts">
   import showSurvey from "$lib/stores/toggle";
   import {
-    Calendar,
     CalendarCheck,
     Castle,
-    ClipboardCheck,
     ClipboardList,
     FileLineChart,
     LineChart,
-    Star
   } from "lucide-svelte";
   import InDecrease from "./InDecrease.svelte";
   import type { MunicipalitiesStats, SurveyStats } from "$lib/types/analyze-data";
