@@ -1,10 +1,13 @@
 <script lang="ts">
-  import type { ParticipatingMunicipality } from "$lib/types/analyze-data";
-  import { MoveHorizontal } from "lucide-svelte";
-  import RatingLabel from "../RatingLabel.svelte";
-  import OneLineDiagram from "../OneLineDiagram.svelte";
+  import type { ParticipatingSurvey } from "$lib/types/analyze-data";
+  import {
+    FileLineChart,
+    MoveHorizontal
+  } from "lucide-svelte";
 
-  export let participatingMunicipality: ParticipatingMunicipality;
+  export let survey: ParticipatingSurvey;
+
+  console.log(survey);
 
   function numberToFloat(number: number) {
     return number.toFixed(2);
@@ -12,12 +15,11 @@
 
   function calculateColor() {
     const difference = Math.abs(
-      participatingMunicipality.avgQuantitativeRating -
-        participatingMunicipality.avgQualitativeRating
+      survey.avgQualitativeRating
     );
-    if (difference <= 0.5) return "bg-green-500";
-    if (difference <= 1) return "bg-yellow-500";
-    if (difference <= 1.5) return "bg-orange-500";
+    if (difference >= 7.5) return "bg-green-500";
+    if (difference >= 6.5) return "bg-yellow-500";
+    if (difference >= 4.5) return "bg-orange-500";
     return "red";
   }
 </script>
@@ -27,22 +29,23 @@
     <div class="">
       <div class="flex items-start gap-x-3">
         <p class="text-sm font-semibold leading-6 text-neutral">
-          {participatingMunicipality.name}
+          {survey.name}
         </p>
-        <RatingLabel
-          quantitativeRating={participatingMunicipality.avgQuantitativeRating}
-          qualitativeRating={participatingMunicipality.avgQualitativeRating}
-        />
+        <!-- <RatingLabel
+          quantitativeRating={survey.avgQuantitativeRating}
+          qualitativeRating={survey.avgQualitativeRating}
+        /> -->
       </div>
       <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
         <p class="whitespace-nowrap">
-          {participatingMunicipality.region}
+          {survey.totalParticipatingMunicipalities}
         </p>
         <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
           <circle cx="1" cy="1" r="1" />
         </svg>
         <p class="truncate">
-          ({participatingMunicipality.canton}, {participatingMunicipality.district})
+          teilnehmende Gemeinden
+          <!-- ({survey.canton}, {survey.district}) -->
         </p>
       </div>
     </div>
@@ -54,27 +57,20 @@
               <dt>
                 <div class="absolute rounded-md {calculateColor()} p-3">
                   <div class="h-6 w-6 text-white">
-                    <MoveHorizontal />
+                    <FileLineChart />
                   </div>
                 </div>
-                <p class="ml-16 truncate text-sm font-medium text-gray-500">Abweichung</p>
+                <p class="ml-16 truncate text-sm font-medium text-gray-500">Bewertung</p>
               </dt>
               <dd class="ml-16 flex items-baseline">
                 <p class="text-2xl font-semibold text-neutral">
                   {numberToFloat(
                     Math.abs(
-                      participatingMunicipality.avgQuantitativeRating -
-                        participatingMunicipality.avgQualitativeRating
+                      survey.avgQualitativeRating
                     )
                   )}
                 </p>
               </dd>
-            </div>
-            <div>
-              <OneLineDiagram
-                quantitativeRating={participatingMunicipality.avgQuantitativeRating}
-                qualitativeRating={participatingMunicipality.avgQualitativeRating}
-              />
             </div>
           </div>
         </div>
