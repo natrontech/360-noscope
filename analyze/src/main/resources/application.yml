@@ -1,0 +1,6 @@
+noscope360:
+  elastic:
+    host:
+    port:
+    username:
+    password:
