@@ -26,12 +26,19 @@ spec:
       retries: 2
       # if helm upgrade fails, rollback to last successfull release
       remediateLastFailure: true
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              group: kibana.k8s.elastic.co
+            patch:
+              - op: replace
+                path: /metadata/annotations/eck.k8s.elastic.co~1license
+                value: basic
   values:
     ## Values: https://github.com/elastic/cloud-on-k8s/blob/main/deploy/eck-stack/values.yaml
     eck-elasticsearch:
       version: 8.9.1
-      annotations:
-        eck.k8s.elastic.co/license: basic
       # delete pvc only if cluster is scaled, not deleted
       volumeClaimDeletePolicy: "DeleteOnScaledownOnly"
       nodeSets:
@@ -62,8 +69,6 @@ spec:
 
     eck-kibana:
       version: 8.9.1
-      annotations:
-        eck.k8s.elastic.co/license: basic
       spec:
         count: 2
         podTemplate:
