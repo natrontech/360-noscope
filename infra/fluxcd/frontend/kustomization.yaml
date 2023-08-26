@@ -3,5 +3,6 @@ kind: Kustomization
 commonLabels:
   app.kubernetes.io/component: frontend
 resources:
-- deployment.yaml
 - ingress.yaml
+- sa.yaml
+- statefulset.yaml
