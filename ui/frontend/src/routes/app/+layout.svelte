@@ -11,6 +11,7 @@
     goto('/app');
   }
   let showNotifications = false;
+  let search = '';
 </script>
 
 <div>
@@ -37,12 +38,26 @@
             placeholder="Suche..."
             type="text"
             name="search"
+            bind:value={search}
           />
+          {#if search.length > 0}
+            <div class="absolute w-full top-full left-0">
+              <div class=" shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5">
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Grindelwald</a>
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Nachhaltigkeitsumfrage 2022</a>
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Spiez</a>
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeine Interlaken</a>
+                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Testumfrage 2023</a>
+              </div>
+            </div>
+          {/if}
         </form>
         <div class="flex items-center gap-x-4 lg:gap-x-6">
           <div class="relative">
           <button type="button" class="-m-2.5 p-2.5" on:click={() => showNotifications = !showNotifications}>
             <span class="sr-only">View notifications</span>
+            <div
+                    class="absolute bottom-auto left-auto right-1 top-1 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 rounded-full bg-red-600 p-1.5 text-xs"></div>
             <svg
               class="h-6 w-6"
               fill="{showNotifications ? 'white' : 'none'}"
