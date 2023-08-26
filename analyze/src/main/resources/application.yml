@@ -1,0 +1,26 @@
+spring:
+  mvc:
+    problemdetails:
+      enabled: true
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  elasticsearch:
+    uris: ${ELASTIC_URI}
+    username: ${ELASTIC_USERNAME}
+    password: ${ELASTIC_PASSWORD}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /api-docs-ui.html
+
+admin:
+  security:
+    username: ${SECURITY_USERNAME}
+    password: ${SECURITY_PASSWORD}
+
+server:
+  port: 8000
