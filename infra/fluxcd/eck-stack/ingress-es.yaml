@@ -5,6 +5,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-natron-cloud
     cert-manager.io/private-key-rotation-policy: Always
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
 spec:
   ingressClassName: nginx-external
   rules:
