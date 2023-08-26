@@ -5,5 +5,7 @@ export type QuestionUi = {
     question: string;
     type: QuestionType;
     indicator: string;
+    theme: string;
+    dimension: string;
     answer: number;
 };
