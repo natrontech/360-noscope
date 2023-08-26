@@ -27,6 +27,7 @@ spec:
       # if helm upgrade fails, rollback to last successfull release
       remediateLastFailure: true
   values:
+    ## Values: https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-elasticsearch-exporter/values.yaml
     env:
       ES_USERNAME: elastic
     es:

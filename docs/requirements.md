@@ -28,8 +28,8 @@ We use pre-commit to make several checks to identifying some issues on every com
 2. Setup pre-commit for this repository:
 
 ```bash
-// go to the root of the cloned git repository
-$ cd 360-noscope
+# go to the root of the cloned git repository
+
 $ pre-commit install
 pre-commit installed at .git/hooks/pre-commit
 ```

@@ -13,7 +13,7 @@ services:
     networks:
       - net
     environment:
-      ELASTIC_URI: https://es.360.natron.cloud
+      ELASTIC_URI: https://elasticsearch:9200
       ELASTIC_USERNAME: elastic
       ELASTIC_PASSWORD: ""
       SECURITY_USERNAME: admin
@@ -35,4 +35,4 @@ services:
 networks:
   net:
     driver_opts:
-      com.docker.network.bridge.name: habits
+      com.docker.network.bridge.name: 360_noscope
