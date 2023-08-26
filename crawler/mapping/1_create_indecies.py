@@ -12,7 +12,7 @@ ElasticsearchClient = Elasticsearch(
     ssl_show_warn=False
 )
 
-indecies = ["quantitative-data","municipalities","themes","dimensions","test123"]
+indecies = ["quantitative-data","municipalities","themes","dimensions","geo-data"]
 
 for i in indecies:
     if not ElasticsearchClient.indices.exists(index=i):
