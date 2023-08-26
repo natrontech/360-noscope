@@ -19,14 +19,14 @@ environment -> energy -> Fortschritt Ausbau Sonnenenergie
 '''
 
 # Variables
-index = "geo-data-2"
+index = "geo-data"
 dimension = "geometry"
-indicator = "pronatura"
+indicator = "flachmoore"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.pronatura.naturschutzgebiete"
-lowerId = 11444
-upperId = 12220
-layername = "ch.pronatura.naturschutzgebiete"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-flachmoore"
+lowerId = 13275
+upperId = 14609
+layername = "ch.bafu.bundesinventare-flachmoore"
 
 
 import os
@@ -85,5 +85,5 @@ for DataPoint in Data:
     })
 with open(f"local_cache_{indicator}.json", "w") as outfile:
     outfile.write(json.dumps(DataBulk, indent=4))
-
+    
 upload_data_elastic(index, DataBulk)
