@@ -2,7 +2,7 @@
 
 This chapter shows the various ways to run and deploy the application. After the application is running (locally), you can access it under the following URLs:
 
-- Frontend (Pocketbase): http://localhost:8090/login
+- Frontend: http://localhost:8090/login
 - Backend (Pocketbase): http://localhost:8090/_/
 - Analyzer: http://localhost:8000
 
@@ -10,21 +10,33 @@ This chapter shows the various ways to run and deploy the application. After the
 
 **Prerequisites**
 
-- Access to an Elasticsearch Cluster with Kibana
-- Edit `docker-compose.yaml` (update environment variables for elasticsearch)
+- Access to an Elasticsearch Cluster
+- Edit `docker-compose.yaml` (update environment variables)
+- Start docker containers
 
 ```bash
-git clone git@github.com:natrontech/360-noscope.git
-cd 360-noscope
+# go to the root of this repository
 
 docker-compose up -d
 ```
 
-> This will build the docker images locally. Instead of building the images yoursel, you can use the [pre-built docker-images](https://github.com/orgs/natrontech/packages?repo_name=360-noscope) from the GitHub registry.
+> This will build the docker images locally. Instead of building the images yourself, you can use the [pre-built docker-images](https://github.com/orgs/natrontech/packages?repo_name=360-noscope) from the GitHub registry.
 
-## Kubernetes
+Use the `image` instead of the `build` configuration:
 
-You can deploy the application in your Kubernetes cluster, but you have to set all the env variables.
+```yaml
+version: '3.9'
+services:
+
+  analyzer:
+    image: ghcr.io/natrontech/360-noscope-analyzer:latest
+    #build: ./analyze
+(...)
+
+  frontend:
+    image: ghcr.io/natrontech/360-noscope-frontend:latest
+    #build: ./ui
+```
 
 ### Environment Variables
 
@@ -40,6 +52,6 @@ You need to set the following environment:
 | `SECURITY_USERNAME` | User for spring api access                                                                  |
 | `SECURITY_PASSWORD` | Password for spring api access                                                              |
 
-## Analyzer API Documentation
+## Kubernetes
 
-You can find the Swagger API Documentation of the Analyzer component on following URL: http://127.0.0.1:8000/swagger-ui/index.html
+You can deploy the application in your Kubernetes cluster. See the files in following directory for more informations: [infra/fluxcd](../infra/fluxcd/).
