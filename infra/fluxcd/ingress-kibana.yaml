@@ -2,8 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kibana
-  #annotations:
-  #  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-natron-cloud
+    cert-manager.io/private-key-rotation-policy: Always
 spec:
   ingressClassName: nginx-external
   rules:
