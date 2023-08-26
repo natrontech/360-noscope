@@ -7,6 +7,7 @@ export enum Collections {
 	Municipalities = "municipalities",
 	SurveyDimensions = "survey_dimensions",
 	SurveyIndicators = "survey_indicators",
+	SurveyParticipants = "survey_participants",
 	SurveyQuestionTypes = "survey_question_types",
 	SurveyQuestions = "survey_questions",
 	SurveyThemes = "survey_themes",
@@ -75,6 +76,12 @@ export type SurveyIndicatorsRecord = {
 	survey_theme: RecordIdString
 }
 
+export type SurveyParticipantsRecord = {
+	municipality?: RecordIdString
+	survey?: RecordIdString
+	canSubmit?: boolean
+}
+
 export type SurveyQuestionTypesRecord = {
 	name: string
 }
@@ -105,6 +112,7 @@ export type HooksResponse = Required<HooksRecord> & BaseSystemFields
 export type MunicipalitiesResponse = Required<MunicipalitiesRecord> & BaseSystemFields
 export type SurveyDimensionsResponse = Required<SurveyDimensionsRecord> & BaseSystemFields
 export type SurveyIndicatorsResponse<Texpand = unknown> = Required<SurveyIndicatorsRecord> & BaseSystemFields<Texpand>
+export type SurveyParticipantsResponse<Texpand = unknown> = Required<SurveyParticipantsRecord> & BaseSystemFields<Texpand>
 export type SurveyQuestionTypesResponse = Required<SurveyQuestionTypesRecord> & BaseSystemFields
 export type SurveyQuestionsResponse<Texpand = unknown> = Required<SurveyQuestionsRecord> & BaseSystemFields<Texpand>
 export type SurveyThemesResponse<Texpand = unknown> = Required<SurveyThemesRecord> & BaseSystemFields<Texpand>
@@ -118,6 +126,7 @@ export type CollectionRecords = {
 	municipalities: MunicipalitiesRecord
 	survey_dimensions: SurveyDimensionsRecord
 	survey_indicators: SurveyIndicatorsRecord
+	survey_participants: SurveyParticipantsRecord
 	survey_question_types: SurveyQuestionTypesRecord
 	survey_questions: SurveyQuestionsRecord
 	survey_themes: SurveyThemesRecord
@@ -130,6 +139,7 @@ export type CollectionResponses = {
 	municipalities: MunicipalitiesResponse
 	survey_dimensions: SurveyDimensionsResponse
 	survey_indicators: SurveyIndicatorsResponse
+	survey_participants: SurveyParticipantsResponse
 	survey_question_types: SurveyQuestionTypesResponse
 	survey_questions: SurveyQuestionsResponse
 	survey_themes: SurveyThemesResponse
