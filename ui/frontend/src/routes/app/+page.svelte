@@ -16,8 +16,8 @@
   {#if $showSurvey}
     <div
       class="absolute w-full overflow-y-scoll top-56 bottom-0 left-0 right-0"
-      in:fly={{ x: 50, duration: 100, delay: 100 }}
-      out:fly={{ x: 50, duration: 100 }}
+      in:fly|global={{ x: 50, duration: 100, delay: 100 }}
+      out:fly|global={{ x: 50, duration: 100 }}
     >
       <SurveysFilter />
       <div class="absolute top-10 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-none">
@@ -27,8 +27,8 @@
   {:else}
     <div
       class="absolute w-full overflow-y-scoll top-56 bottom-0 left-0 right-0"
-      in:fly={{ x: -50, duration: 100, delay: 100 }}
-      out:fly={{ x: -50, duration: 100 }}
+      in:fly|global={{ x: -50, duration: 100, delay: 100 }}
+      out:fly|global={{ x: -50, duration: 100 }}
     >
       <MunicipalitiesFilter />
       <div class="absolute top-10 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-none">
