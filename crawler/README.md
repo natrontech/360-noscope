@@ -36,3 +36,13 @@ The following JSON reference should be used when pushing data to the ELK stack:
 ## Data sources
 
 Each crawler has it's data source declared on the first line of the file. Additionaly the expected return result is also declared at the top of the file.
+
+## Setup Dev Environment
+
+```bash
+cd into/this/directory
+python3 -m venv .venv
+source .env
+source .venv/bin/activate
+pip install -r requirements.txt
+```
