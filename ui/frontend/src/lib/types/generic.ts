@@ -4,5 +4,5 @@ export type QuestionUi = {
     questionId: string;
     question: string;
     type: QuestionType;
-    answer: number | boolean | null;
+    answer: number;
 };
