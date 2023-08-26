@@ -4,11 +4,13 @@
   import { Search } from "lucide-svelte";
   import { avatarUrl } from '$lib/utils/user.utils';
   import { goto } from '$app/navigation';
+  import Notification from '$lib/components/base/Notification.svelte';
 
   const avatar = avatarUrl();
   function goHome() {
     goto('/app');
   }
+  let showNotifications = false;
 </script>
 
 <div class="">
@@ -38,11 +40,12 @@
           />
         </form>
         <div class="flex items-center gap-x-4 lg:gap-x-6">
-          <button type="button" class="-m-2.5 p-2.5">
+          <div class="relative">
+          <button type="button" class="-m-2.5 p-2.5" on:click={() => showNotifications = !showNotifications}>
             <span class="sr-only">View notifications</span>
             <svg
               class="h-6 w-6"
-              fill="none"
+              fill="{showNotifications ? 'currentColor' : 'none'}"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
@@ -55,6 +58,10 @@
               />
             </svg>
           </button>
+            {#if showNotifications}
+              <Notification />
+            {/if}
+          </div>
 
           <!-- Separator -->
           <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
