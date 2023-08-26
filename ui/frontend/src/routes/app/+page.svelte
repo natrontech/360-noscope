@@ -1,3 +1,6 @@
-<h1>
-  App Page
-</h1>
+<script>
+    import Stats from "$lib/components/data/Stats.svelte";
+
+</script>
+
+<Stats />
