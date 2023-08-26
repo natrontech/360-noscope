@@ -30,7 +30,15 @@ spec:
     - kustomize:
         patchesJson6902:
           - target:
+              group: elasticsearch.k8s.elastic.co
+              name: elasticsearch
+            patch:
+              - op: replace
+                path: /metadata/annotations/eck.k8s.elastic.co~1license
+                value: basic
+          - target:
               group: kibana.k8s.elastic.co
+              name: kibana
             patch:
               - op: replace
                 path: /metadata/annotations/eck.k8s.elastic.co~1license
@@ -41,6 +49,10 @@ spec:
       version: 8.9.1
       # delete pvc only if cluster is scaled, not deleted
       volumeClaimDeletePolicy: "DeleteOnScaledownOnly"
+      http:
+        tls:
+          selfSignedCertificate:
+            disabled: true
       nodeSets:
       - name: default
         count: 3
@@ -68,9 +80,14 @@ spec:
               storageClassName: nfs-data
 
     eck-kibana:
+      fullnameOverride: "kibana"
       version: 8.9.1
       spec:
         count: 2
+        http:
+          tls:
+            selfSignedCertificate:
+              disabled: true
         podTemplate:
           spec:
             containers:
