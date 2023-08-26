@@ -1,45 +1,64 @@
 package io.natron.noscope360.analyze.controller;
 
+import io.natron.noscope360.analyze.model.dto.Survey;
+import io.natron.noscope360.analyze.model.dto.SurveyAnswers;
+import io.natron.noscope360.analyze.model.dto.SurveyOverview;
+import io.natron.noscope360.analyze.model.dto.SurveyStats;
 import io.natron.noscope360.analyze.service.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-/**
- * Controller that handles scale related operations.
- */
 @Validated
 @RestController
-@RequestMapping("/survey")
+@RequestMapping("/api/surveys")
 public class SurveyController {
 
-    private static final Logger log = LoggerFactory.getLogger(ScaleController.class);
+    private static final Logger log = LoggerFactory.getLogger(SurveyController.class);
     private final SurveyService surveyService;
 
     public SurveyController(SurveyService surveyService) {
         this.surveyService = surveyService;
     }
 
-    @Operation(summary = "Retrieve all available dimensions.", security = @SecurityRequirement(name = "basicAuth"))
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved list of dimensions"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Invalid authentication credentials"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Retrieve overview data of all surveys.", security = @SecurityRequirement(name = "basicAuth"))
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void getDimensions() {
-        log.info("Retrieving all dimensions.");
+    public List<SurveyOverview> getSurveys() {
+        log.info("Retrieve overview data of all surveys.");
+        return surveyService.getSurveys();
+    }
+
+    @Operation(summary = "Retrieve stats of all surveys.", security = @SecurityRequirement(name = "basicAuth"))
+    @GetMapping(path = "/stats", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public SurveyStats getSurveyStats() {
+        log.info("Retrieve stats of all surveys.");
+        return surveyService.getSurveyStats();
+    }
+
+    @Operation(summary = "Retrieve data of a specific surveys.", security = @SecurityRequirement(name = "basicAuth"))
+    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public Survey getSurveyById(@PathVariable String id) {
+        log.info("Retrieve data of a specific surveys.");
+        return surveyService.getSurveyById();
+    }
+
+    @Operation(summary = "Make a survey answers for a survey.")
+    @PostMapping(path = "/{id}/answers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public SurveyAnswers makeSurveyAnswers(@PathVariable String id, @Valid @RequestBody SurveyAnswers surveyAnswers) throws SeatNotFoundException, SeatNotAvailableException {
+        log.info("Make a survey answers for a survey.");
+        return surveyService.makeSurveyAnswers(id, surveyAnswers);
     }
 }
