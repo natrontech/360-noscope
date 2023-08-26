@@ -2,7 +2,7 @@
 # This datasource feeds 4 different indicators. 
 # The following datasets are extracted from the datasource:
 '''
-Umwelt -> Energie -> Energieverbrauch pro Person
+environment -> Energie -> Energieverbrauch pro Person
 
 {
     "@timestamp": '2023-08-26 09:46:56.898755',
@@ -10,7 +10,7 @@ Umwelt -> Energie -> Energieverbrauch pro Person
     "plz": null,
     "municipality": "Burgdorf",
     "canton": None,
-    "dimension": "Umwelt",
+    "dimension": "environment",
     "theme": "Energie",
     "indicator": "Energieverbrauch pro Person",
     "value": 20
@@ -25,7 +25,7 @@ Umelt -> Energie -> Anteil Elektroautos
     "plz": null,
     "municipality": "Burgdorf",
     "canton": None,
-    "dimension": "Umwelt",
+    "dimension": "environment",
     "theme": "Energie",
     "indicator": "Anteil Elektroautos",
     "value": 20
@@ -40,7 +40,7 @@ Umelt -> Energie -> Erneuerbar Heizen
     "plz": null,
     "municipality": "Burgdorf",
     "canton": None,
-    "dimension": "Umwelt",
+    "dimension": "environment",
     "theme": "Energie",
     "indicator": "Erneuerbar Heizen",
     "value": 20
@@ -55,7 +55,7 @@ Umelt -> Energie -> Fortschritt Ausbau Sonnenenergie
     "plz": null,
     "municipality": "Burgdorf",
     "canton": None,
-    "dimension": "Umwelt",
+    "dimension": "environment",
     "theme": "Energie",
     "indicator": "Fortschritt Ausbau Sonnenenergie",
     "value": 20
@@ -97,7 +97,7 @@ def sendDataToElk(Data):
             "plz": None,
             "municipality": DataPoint["regionName"],
             "canton": None,
-            "dimension": "Umwelt",
+            "dimension": "environment",
             "theme": "Energie",
             "indicator": KpiDictionary[DataPoint["kpiName"]],
             "value": DataPoint["value"] if isinstance(DataPoint["value"], float) else DataPoint["value"]["value"]

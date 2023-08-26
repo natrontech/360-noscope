@@ -26,7 +26,7 @@ The following JSON reference should be used when pushing data to the ELK stack:
   "plz": 1234,
   "municipality": "Burgdorf",
   "canton": "BE",
-  "dimension": "Umwelt", // one of: "Umwelt" | "Soziales" | "Wirtschaft"
+  "dimension": "environment", // one of: "environment" | "social" | "economy"
   "theme": "Klima",
   "indicator": "Treibhausgas-Emissione pro Einwohner*in",
   "value": 20
