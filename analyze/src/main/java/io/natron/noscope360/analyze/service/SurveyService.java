@@ -29,7 +29,7 @@ public class SurveyService {
         return null;
     }
 
-    public SurveyDto getSurveyById() {
+    public SurveyDto getSurveyById(String id) {
         return null;
     }
 
