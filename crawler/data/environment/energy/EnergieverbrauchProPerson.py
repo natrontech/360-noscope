@@ -1,5 +1,5 @@
 # Datasource: https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json
-# This datasource feeds 4 different indicators. 
+# This datasource feeds 4 different indicators.
 # The following datasets are extracted from the datasource:
 '''
 environment -> Energie -> Energieverbrauch pro Person
@@ -100,7 +100,7 @@ def sendDataToElk(Data):
             "indicator": KpiDictionary[DataPoint["kpiName"]],
             "value": DataPoint["value"] if isinstance(DataPoint["value"], float) else DataPoint["value"]["value"]
         }
-  
+
         ElasticsearchClient.index(index=os.environ['ELASTIC_INDEX'], body=DataObject)
 
 sendDataToElk(Data)

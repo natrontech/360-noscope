@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+
+  analyzer:
+    # image: ghcr.io/natrontech/360-analyzer:latest
+    user: '1001'
+    platform: "linux/amd64"
+    build: ./analyze
+    container_name: 360_analyzer
+    ports:
+      - "8000:8000"
+    networks:
+      - net
+    environment:
+      ELASTIC_URI: https://es.360.natron.cloud
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: ""
+      SECURITY_USERNAME: admin
+      SECURITY_PASSWORD: securepassword
+
+  frontend:
+    # image: ghcr.io/natrontech/360-frontend:latest
+    build: ./ui
+    platform: "linux/amd64"
+    container_name: 360_frontend
+    ports:
+      - "8090:8090"
+    volumes:
+      - $PWD/pocketbase/pb_data:/app/pocketbase/pb_data
+    networks:
+      - net
+
+networks:
+  net:
+    driver_opts:
+      com.docker.network.bridge.name: habits
