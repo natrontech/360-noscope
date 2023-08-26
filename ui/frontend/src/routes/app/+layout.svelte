@@ -5,13 +5,17 @@
   import { avatarUrl } from '$lib/utils/user.utils';
   import { goto } from '$app/navigation';
   import Notification from '$lib/components/base/Notification.svelte';
+  import { fly } from 'svelte/transition';
+  import { apiMunicipalitiesResponse } from '$lib/mock/analyze-data';
 
   const avatar = avatarUrl();
   function goHome() {
     goto('/app');
   }
+
   let showNotifications = false;
   let search = '';
+  let list = apiMunicipalitiesResponse.municipalities.map(m => m.name);
 </script>
 
 <div>
@@ -41,13 +45,11 @@
             bind:value={search}
           />
           {#if search.length > 0}
-            <div class="absolute w-full top-full left-0">
+            <div class="absolute w-full top-full left-0" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
               <div class=" shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5">
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Grindelwald</a>
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Nachhaltigkeitsumfrage 2022</a>
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Spiez</a>
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Gemeinde Interlaken</a>
-                <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>Testumfrage 2023</a>
+                {#each list as item}
+                  <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>{item}</a>
+                {/each}
               </div>
             </div>
           {/if}
