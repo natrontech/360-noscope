@@ -19,5 +19,6 @@ spec:
               port:
                 number: 9200
   tls:
-    - hosts:
-        - "es.360.natron.cloud"
+  - hosts:
+      - "es.360.natron.cloud"
+    secretName: tls-es-360-natron-cloud
