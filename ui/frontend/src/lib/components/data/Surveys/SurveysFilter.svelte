@@ -2,7 +2,6 @@
   // TODO: Add geo filter
 </script>
 
-
 <div class="bg-white">
   <!-- Filters -->
   <section aria-labelledby="filter-heading">
@@ -82,7 +81,7 @@
                   class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
                   aria-expanded="false"
                 >
-                  <span>Region</span>
+                  <span>Gemeinden</span>
                   <span
                     class="ml-1.5 rounded bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700"
                     >Bern</span
@@ -159,151 +158,10 @@
                   </form>
                 </div> -->
               </div>
-              <div class="relative inline-block px-4 text-left">
-                <button
-                  type="button"
-                  class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-                  aria-expanded="false"
-                >
-                  <span>Kanton</span>
-                  <svg
-                    class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-
-                <!-- <div
-                  class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
-                >
-                  <form class="space-y-4">
-                    <div class="flex items-center">
-                      <input
-                        id="filter-color-0"
-                        name="color[]"
-                        value="white"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-color-0"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >White</label
-                      >
-                    </div>
-                    <div class="flex items-center">
-                      <input
-                        id="filter-color-1"
-                        name="color[]"
-                        value="beige"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-color-1"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >Beige</label
-                      >
-                    </div>
-                    <div class="flex items-center">
-                      <input
-                        id="filter-color-2"
-                        name="color[]"
-                        value="blue"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-color-2"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >Blue</label
-                      >
-                    </div>
-                  </form>
-                </div> -->
-              </div>
-              <div class="relative inline-block px-4 text-left">
-                <button
-                  type="button"
-                  class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-                  aria-expanded="false"
-                >
-                  <span>Bezirk</span>
-                  <svg
-                    class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-
-                <!-- <div
-                  class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
-                >
-                  <form class="space-y-4">
-                    <div class="flex items-center">
-                      <input
-                        id="filter-sizes-0"
-                        name="sizes[]"
-                        value="s"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-sizes-0"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >S</label
-                      >
-                    </div>
-                    <div class="flex items-center">
-                      <input
-                        id="filter-sizes-1"
-                        name="sizes[]"
-                        value="m"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-sizes-1"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >M</label
-                      >
-                    </div>
-                    <div class="flex items-center">
-                      <input
-                        id="filter-sizes-2"
-                        name="sizes[]"
-                        value="l"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        for="filter-sizes-2"
-                        class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
-                        >L</label
-                      >
-                    </div>
-                  </form>
-                </div> -->
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </section>
 </div>
