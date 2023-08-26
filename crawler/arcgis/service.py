@@ -9,7 +9,7 @@ def search_values_by_layer(layerName, fieldName):
     for f in data.fields:
         if f['name'] == fieldName:
             return f['values']
-        
+
 def geometry_by_layer_and_value(layerName, fieldName, value):
     data = find(layerName, value, fieldName)
     return data.results[0]['geometry']
