@@ -1,0 +1,112 @@
+[
+    {
+        "theme_name": "biodiversity",
+        "description": "Biodiversität bezeichnet die Vielfalt von Leben in all seinen Formen, einschließlich der genetischen Vielfalt, Artenvielfalt und Ökosystemvielfalt; sie ist zentraler Bestandteildes SDG 15: Leben an Land",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "climate",
+        "description": "Das Klima beschreibt die langfristigen Wetterbedingungen in einem Gebiet; es ist zentraler Bestandteil des SDG 13: \"Maßnahmen zum Klimaschutz\".",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "energy",
+        "description": "Energie bezieht sich auf die Kapazität eines Systems, Arbeit zu verrichten; sie ist zentraler Bestandteil des SDG 7: \"Bezahlbare und saubere Energie\".",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "air",
+        "description": "Luft ist das gasförmige Gemisch, das die Erdatmosphäre bildet und für das Leben essentiell ist; sie ist in Bezug auf die Luftqualität mit dem SDG 3 (Gesundheit und Wohlergehen) und dem SDG 11 (Nachhaltige Städte und Gemeinden) verknüpft.",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "water", 
+        "description": "Wasser ist eine lebenswichtige, farb- und geruchlose Flüssigkeit, die Ozeane, Seen und Flüsse bildet; es ist eng mit dem SDG 6 (Sauberes Wasser und Sanitärversorgung) verbunden.",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "soil",
+        "description": "Boden ist die obere Schicht der Erdkruste, in der Pflanzen wachsen; er ist eng mit dem SDG 15 (Leben an Land) und indirekt mit dem SDG 2 (Kein Hunger) verknüpft.",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "sustainable_consumption",
+        "description": "Nachhaltiger Konsum bezeichnet den Gebrauch von Gütern und Dienstleistungen, die den Bedarf der Gegenwart decken, ohne die Bedürfnisse zukünftiger Generationen zu gefährden; er ist direkt mit dem SDG 12 (Verantwortungsvolle Konsum- und Produktionsmuster) verknüpft.",
+        "associated_dimension": "environment"
+    },
+    {
+        "theme_name": "supply_and_service",
+        "description": "Versorgung und Dienstleistung beziehen sich auf die Bereitstellung und Nutzung von Waren und Serviceangeboten; obwohl dies thematisch verschiedene SDGs berühren kann, steht es besonders im Zusammenhang mit SDG 9 (Industrie, Innovation und Infrastruktur) und SDG 12 (Verantwortungsvolle Konsum- und Produktionsmuster).",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "health",
+        "description": "Gesundheit bezieht sich auf den Zustand des vollständigen körperlichen, geistigen und sozialen Wohlbefindens eines Individuums; sie ist direkt mit dem SDG 3 (Gesundheit und Wohlergehen) verknüpft.",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "housing_supply_and_spatial_development",
+        "description": "Wohnungsversorgung und räumliche Entwicklung betreffen die Bereitstellung von Wohnraum und die Gestaltung von Lebensräumen; dies steht in direktem Zusammenhang mit dem SDG 11 (Nachhaltige Städte und Gemeinden).",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "safety",
+        "description": "Sicherheit bezieht sich auf den Schutz von Personen vor Gefahren und Risiken; sie ist eng mit dem SDG 16 (Frieden, Gerechtigkeit und starke Institutionen) verknüpft.",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "social_support_and_solidarity",
+        "description": "Soziale Unterstützung und Solidarität beziehen sich auf die gegenseitige Hilfe und das Gemeinschaftsgefühl unter Menschen; dies steht in direktem Zusammenhang mit dem SDG 10 (Weniger Ungleichheiten) und SDG 1 (Keine Armut).",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "equality_and_integration",
+        "description": "Gleichberechtigung und Integration betreffen die gleichberechtigte Behandlung und Einbindung aller Menschen unabhängig von ihrem Hintergrund; dies steht in direktem Zusammenhang mit dem SDG 5 (Geschlechtergleichheit) und SDG 10 (Weniger Ungleichheiten).",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "leisure_sport_and_cultural_activities",
+        "description": "Freizeit, Sport und kulturelle Aktivitäten beziehen sich auf nichtberufliche Aktivitäten, die zur Erholung, Unterhaltung und kulturellen Bildung dienen; während sie nicht direkt einem spezifischen SDG zugeordnet sind, können sie Aspekte des SDG 3 (Gesundheit und Wohlergehen) und SDG 11 (Nachhaltige Städte und Gemeinden) berühren.",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "mobility_and_accessibility",
+        "description": "Mobilität und Zugänglichkeit beziehen sich auf die Fähigkeit von Personen, sich fortzubewegen und Zugang zu Orten und Dienstleistungen zu haben; dies steht in direktem Zusammenhang mit dem SDG 11 (Nachhaltige Städte und Gemeinden) und SDG 9 (Industrie, Innovation und Infrastruktur).",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "education",
+        "description": "Bildung bezieht sich auf den Prozess des Lehrens und Lernens, um Wissen und Fähigkeiten zu erwerben; sie ist direkt mit dem SDG 4 (Hochwertige Bildung) verknüpft.",
+        "associated_dimension": "social"
+    },
+    {
+        "theme_name": "income_and_living_cost",
+        "description": "Einkommen und Lebenshaltungskosten betreffen das erhaltene Geld und die Ausgaben für den täglichen Bedarf; dies steht in direktem Zusammenhang mit dem SDG 1 (Keine Armut) und SDG 8 (Menschenwürdige Arbeit und Wirtschaftswachstum).",
+        "associated_dimension": "economy"
+    },
+    {
+        "theme_name": "employment_and_jobs",
+        "description": "Beschäftigung und Jobs beziehen sich auf das Angebot und die Inanspruchnahme von Arbeitsmöglichkeiten; sie stehen in direktem Zusammenhang mit dem SDG 8 (Menschenwürdige Arbeit und Wirtschaftswachstum).",
+        "associated_dimension": "economy"
+    },
+    {
+        "theme_name": "professionals",
+        "description": "Fachleute sind Personen, die aufgrund ihrer Ausbildung und Erfahrung in einem bestimmten Beruf oder Fachgebiet spezialisiert sind; während dies nicht direkt einem spezifischen SDG zugeordnet ist, kann es Aspekte des SDG 4 (Hochwertige Bildung) und SDG 8 (Menschenwürdige Arbeit und Wirtschaftswachstum) berühren.",
+        "associated_dimension": "economy"
+    },
+    {
+        "theme_name": "economic_resilience",
+        "description": "Wirtschaftliche Resilienz bezieht sich auf die Fähigkeit einer Wirtschaft, Störungen zu absorbieren und sich von wirtschaftlichen Schocks zu erholen; sie steht in Verbindung mit dem SDG 8 (Menschenwürdige Arbeit und Wirtschaftswachstum) und SDG 9 (Industrie, Innovation und Infrastruktur).",
+        "associated_dimension": "economy"
+    },
+    {
+        "theme_name": "ionnovation",
+        "description": "Innovation bezieht sich auf die Einführung neuer Ideen, Produkte oder Verfahren; sie steht in direktem Zusammenhang mit dem SDG 9 (Industrie, Innovation und Infrastruktur).",
+        "associated_dimension": "economy"
+    },
+    {
+        "theme_name": "financial_attractiveness_for_businesses",
+        "description": "Finanzielle Attraktivität für Unternehmen bezieht sich auf die Anziehungskraft eines Ortes oder Marktes in Bezug auf wirtschaftliche Chancen und Investitionsrenditen; während es nicht direkt einem spezifischen SDG zugeordnet ist, kann es Aspekte von SDG 8 (Menschenwürdige Arbeit und Wirtschaftswachstum) und SDG 9 (Industrie, Innovation und Infrastruktur) berühren.",
+        "associated_dimension": "economy"
+    }    
+]

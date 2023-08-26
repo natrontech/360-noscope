@@ -1,0 +1,15 @@
+[
+    {
+        "dimension_name": "environment",
+        "description": "Umwelt bezieht sich auf die natürliche Umwelt, in der wir leben; sie ist zentraler Bestandteil des SDG 13: \"Maßnahmen zum Klimaschutz\"."
+    },
+    {
+        "dimension_name": "social",
+        "description": "Gesundheit bezieht sich auf das körperliche, geistige und soziale Wohlbefinden eines Menschen; sie ist zentraler Bestandteil des SDG 3: \"Gesundheit und Wohlergehen\"."
+    },
+    {
+        "dimension_name": "economy",
+        "description": "Wirtschaftliche Nachhaltigkeit bezieht sich auf die Fähigkeit einer Wirtschaft, langfristig zu wachsen und zu gedeihen; sie ist zentraler Bestandteil des SDG 8: \"Menschenwürdige Arbeit und Wirtschaftswachstum\"."
+    }
+    
+]
