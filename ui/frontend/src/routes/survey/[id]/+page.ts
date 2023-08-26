@@ -6,7 +6,7 @@ import type {
     SurveyQuestionsResponse,
     SurveyParticipantsResponse, MunicipalitiesResponse
 } from '$lib/pocketbase/generated-types';
-import { getQuestions, getQuestionType } from "$lib/utils/survey.utils";
+import { getQuestionIndicator, getQuestions, getQuestionType } from '$lib/utils/survey.utils';
 import type { QuestionUi } from "$lib/types/generic";
 export const load: PageLoad = async ({ params }) => {
     const { id } = params;
@@ -20,11 +20,11 @@ export const load: PageLoad = async ({ params }) => {
         const questions: QuestionUi[] = getQuestions(survey).map(
             (question: SurveyQuestionsResponse) => {
                 const type = getQuestionType(question);
-                return { questionId: question.id, question: question.question, type, answer: 0 };
+                const indicator = getQuestionIndicator(question);
+                return { questionId: question.id, question: question.question, type, indicator: indicator.name, answer: 0 };
             }
         );
 
-        toast.success("Umfrage geladen");
         return { survey, questions, municipality, participant, id };
     } catch (error) {
         toast.error("Error: Umfrage existiert nicht");
