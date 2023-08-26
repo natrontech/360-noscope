@@ -1,11 +1,14 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: frontend
 spec:
   template:
     metadata:
     spec:
+      serviceAccountName: frontend
+      automountServiceAccountToken: false
+      replicas: 1
       # securityContext:
       #   fsGroup: 1001
       #   runAsUser: 1001
@@ -24,6 +27,9 @@ spec:
         - name: http
           containerPort: 8090
           protocol: TCP
+        volumeMounts:
+        - name: pb-data
+          mountPath: /app/360/pb_data
         livenessProbe:
             httpGet:
               path: /
@@ -38,6 +44,15 @@ spec:
             drop:
             - ALL
           #readOnlyRootFilesystem: true
+  volumeClaimTemplates:
+  - metadata:
+      name: pb-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: nfs-data
 ---
 apiVersion: v1
 kind: Service

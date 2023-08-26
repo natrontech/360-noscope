@@ -6,6 +6,9 @@ spec:
   template:
     metadata:
     spec:
+      serviceAccountName: analyzer
+      automountServiceAccountToken: false
+      replicas: 1
       securityContext:
         fsGroup: 1001
         runAsUser: 1001
