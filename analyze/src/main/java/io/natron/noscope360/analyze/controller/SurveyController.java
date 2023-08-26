@@ -57,7 +57,7 @@ public class SurveyController {
     @Operation(summary = "Make a survey answers for a survey.")
     @PostMapping(path = "/{id}/answers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public SurveyAnswers makeSurveyAnswers(@PathVariable String id, @Valid @RequestBody SurveyAnswers surveyAnswers) throws SeatNotFoundException, SeatNotAvailableException {
+    public SurveyAnswers makeSurveyAnswers(@PathVariable String id, @Valid @RequestBody SurveyAnswers surveyAnswers) {
         log.info("Make a survey answers for a survey.");
         return surveyService.makeSurveyAnswers(id, surveyAnswers);
     }
