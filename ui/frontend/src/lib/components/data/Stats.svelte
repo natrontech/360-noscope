@@ -1,15 +1,31 @@
 <script lang="ts">
   import showSurvey from "$lib/stores/toggle";
-  import { Calendar, CalendarCheck, Castle, ClipboardCheck, ClipboardList, Star } from "lucide-svelte";
-    import InDecrease from "./InDecrease.svelte";
+  import {
+    Calendar,
+    CalendarCheck,
+    Castle,
+    ClipboardCheck,
+    ClipboardList,
+    FileLineChart,
+    LineChart,
+    Star
+  } from "lucide-svelte";
+  import InDecrease from "./InDecrease.svelte";
+  import type { MunicipalitiesStats, SurveyStats } from "$lib/types/analyze-data";
 
-  let totalSurveys = 20;
-  let avgSurveyPerDay = 2;
-  let avgScorePerSurvey = 8.2;
+  // TODO: fetch from backend /api/municipalities
+  let municipalityStats: MunicipalitiesStats = {
+    totalMunicipalities: 300,
+    avgQuantitativeRating: 6.8,
+    avgQualitativeRating: 7.3
+  };
 
-  let totalMunicipalities = 10;
-  let avgSurveyPerMunicipality = 2;
-  let avgScorePerMunicipality = 6.8;
+  let surveyStats: SurveyStats = {
+    totalSurveys: 420,
+    avgSurveysPerDay: 2.3,
+    avgQualitativeRating: 7.3,
+  };
+
   let avgScoreSurveyDrift = 1.4;
 
   interface Stats {
@@ -25,46 +41,45 @@
     stats = [
       {
         name: "Total ausgefüllte Umfragen",
-        value: totalSurveys,
-        difference: -2,
+        value: surveyStats.totalSurveys,
+        difference: -69,
         icon: ClipboardList
       },
       {
-        name: "Durchschnittliche Umfragen pro Tag",
-        value: avgSurveyPerDay,
-        difference: 2,
+        name: "Umfragen pro Tag",
+        value: surveyStats.avgSurveysPerDay,
+        difference: -0.12,
         icon: CalendarCheck
       },
       {
-        name: "Durchschnittliche Bewertung pro Umfrage",
-        value: avgScorePerSurvey,
-        difference: 2,
-        icon: Star
+        name: "Qualitative Bewertung",
+        value: surveyStats.avgQualitativeRating,
+        difference: 0.3,
+        icon: FileLineChart
       }
     ];
   } else {
     stats = [
       {
         name: "Total Gemeinden",
-        value: totalMunicipalities,
+        value: municipalityStats.totalMunicipalities,
         difference: 2,
         icon: Castle
       },
       {
-        name: "Durchschnittliche Umfragen pro Gemeinde",
-        value: avgSurveyPerMunicipality,
-        difference: 2,
-        icon: ClipboardCheck
+        name: "Quantitative Bewertung",
+        value: municipalityStats.avgQuantitativeRating,
+        difference: -0.2,
+        icon: LineChart
       },
       {
-        name: "Durchschnittliche Bewertung pro Gemeinde",
-        value: avgScorePerMunicipality,
-        difference: -0.2,
-        icon: Star
+        name: "Qualitative Bewertung",
+        value: municipalityStats.avgQualitativeRating,
+        difference: 0.3,
+        icon: FileLineChart
       },
     ];
   }
-
 </script>
 
 {#key showSurvey}
