@@ -1,5 +1,7 @@
 # Data Crawlers
 
+This is a collection of crawlers which grab the desired data and push it to the ELK stack. Each crawler is a Python script which can be run individually.
+
 ## Environment variables
 
 Each collector reads the following environment variables:
@@ -29,4 +31,4 @@ The following JSON reference should be used when pushing data to the ELK stack:
 
 ## Data sources
 
-Each crawler has it's data source declared on the first line of the file. The data source is a URL to the data source.
+Each crawler has it's data source declared on the first line of the file. Additionaly the expected return result is also declared at the top of the file.
