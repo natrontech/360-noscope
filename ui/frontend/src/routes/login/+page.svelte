@@ -26,8 +26,7 @@
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <img class="mx-auto h-28 w-auto" src="/images/360-noscope.png" alt="360-noscope" />
-    <h2 class="mt-6 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900">
-      Sign in to <br />
+    <h2 class="text-center text-2xl font-medium leading-9 tracking-tight text-gray-900">
       <span class="font-bold">360-noscope</span>
     </h2>
   </div>
@@ -37,7 +36,7 @@
       <form class="space-y-6" on:submit|preventDefault={submit} method="POST">
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900"
-            >Email address</label
+            >E-Mail</label
           >
           <div class="mt-2">
             <input type="email" class="input input-bordered w-full" bind:value={user.email} />
@@ -46,7 +45,7 @@
 
         <div>
           <label for="password" class="block text-sm font-medium leading-6 text-gray-900"
-            >Password</label
+            >Passwort</label
           >
           <div class="mt-2">
             <input
@@ -62,17 +61,17 @@
           <div class="flex items-center">
             <input type="checkbox" class="checkbox" />
             <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-900"
-              >Remember me</label
+              >Email speichern</label
             >
           </div>
 
           <div class="text-sm leading-6">
-            <a href="/fake" class="font-semibold ">Forgot password?</a>
+            <a href="/fake" class="font-semibold ">Passwort vergessen?</a>
           </div>
         </div>
 
         <div>
-          <button class="btn w-full">Log in</button>
+          <button class="btn w-full">Anmelden</button>
         </div>
       </form>
 
@@ -82,7 +81,7 @@
             <div class="w-full border-t border-gray-200" />
           </div>
           <div class="relative flex justify-center text-sm font-medium leading-6">
-            <span class="bg-white px-6 text-gray-900">Or continue with</span>
+            <span class="bg-white px-6 text-gray-900">oder</span>
           </div>
         </div>
 

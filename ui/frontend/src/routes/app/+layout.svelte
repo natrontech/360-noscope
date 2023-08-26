@@ -24,7 +24,7 @@
           <input
             id="search-field"
             class="block h-full w-full border-0 py-0 pl-8 pr-0 bg-transparent focus:ring-0 sm:text-sm"
-            placeholder="Search..."
+            placeholder="Suche..."
             type="search"
             name="search"
           />
@@ -92,8 +92,8 @@
                 tabIndex={0}
                 class="dropdown-content z-[1] menu mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li><a href="profile">Your profile</a></li>
-                <li><button on:click={() => logout()}>Sign out</button></li>
+                <li><a href="profile">Dein Profil</a></li>
+                <li><button on:click={() => logout()}>Abmelden</button></li>
               </ul>
             </div>
           </div>
