@@ -4,6 +4,8 @@
   import RatingLabel from "../RatingLabel.svelte";
   import OneLineDiagram from "../OneLineDiagram.svelte";
   import GlowingButton from "$lib/components/base/GlowingButton.svelte";
+  import {Confetti} from "svelte-confetti";
+  import ToggleConfetti from "$lib/components/base/ToggleConfetti.svelte";
 
   export let participatingMunicipality: ParticipatingMunicipality;
 
@@ -82,13 +84,16 @@
       </div>
     </div>
     <div class="flex flex-none items-center gap-x-4">
-      <!-- <ToggleConfetti>
-				<button slot="label">Sparkles</button>
-
-				<Confetti y={[-0.5, 0.5]} x={[-0.5, 0.5]} colorRange={[30, 50]} amount=20 fallDistance=0px duration=3000 size=4 />
-			</ToggleConfetti> -->
+      <ToggleConfetti>
+				<button slot="label">
 
       <GlowingButton label="Analysieren" />
+
+        </button>
+
+				<Confetti y={[-0.5, 0.5]} x={[-0.5, 0.5]} colorRange={[30, 50]} amount=30 fallDistance=0px duration=1000 size=4 />
+			</ToggleConfetti>
+
 
       <div class="relative flex-none">
         <button

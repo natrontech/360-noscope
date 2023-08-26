@@ -8,7 +8,7 @@
   import { fly } from "svelte/transition";
 </script>
 
-<div class="absolute top-5 right-0 left-0 bottom-5 overflow-hidden">
+<div class="absolute top-0 right-0 left-0 bottom-0 overflow-hidden">
   <div class="absolute top-0 w-full">
     <Stats />
   </div>

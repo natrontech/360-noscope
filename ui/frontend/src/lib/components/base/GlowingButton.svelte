@@ -3,7 +3,7 @@
   export let icon: any = null;
 </script>
 
-<button class="button btn btn-neutral ring-4">
+<button class="button btn ring-4">
   {#if icon}
     <svelte:component this={icon} class="mr-2 inline h-8 w-8" />
   {/if}
@@ -18,7 +18,7 @@
   }
 
   :root {
-    --card-height: 4vh;
+    --card-height: 50px;
     --card-width: calc(var(--card-height) * 2.5);
   }
 
