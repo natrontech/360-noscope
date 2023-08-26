@@ -28,7 +28,7 @@ public class MunicipalityService {
         return null;
     }
 
-    public MunicipalityDto getMunicipalityById() {
+    public MunicipalityDto getMunicipalityById(String id) {
         return null;
     }
 }
