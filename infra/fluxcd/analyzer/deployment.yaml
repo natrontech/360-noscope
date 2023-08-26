@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analyzer
+spec:
+  template:
+    metadata:
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+      - name: analyzer
+        image: ghcr.io/natrontech/360-noscope-analyzer:latest
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: analyzer-secrets
+        - configMapRef:
+            name: analyzer-env
+        resources:
+          requests:
+            memory: 256Mi
+            #cpu: 1
+          limits:
+            memory: 2Gi
+            cpu: 2
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        #livenessProbe:
+        #    httpGet:
+        #      path: /actuator/health
+        #      port: http
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          #readOnlyRootFilesystem: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: analyzer
+spec:
+  ports:
+  - port: 8000
+    targetPort: http
+    protocol: TCP
+    name: http

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  template:
+    metadata:
+    spec:
+      # securityContext:
+      #   fsGroup: 1001
+      #   runAsUser: 1001
+      containers:
+      - name: frontend
+        image: ghcr.io/natrontech/360-noscope-frontend:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 0
+          limits:
+            memory: 2Gi
+            cpu: 2
+        ports:
+        - name: http
+          containerPort: 8090
+          protocol: TCP
+        livenessProbe:
+            httpGet:
+              path: /
+              port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          #readOnlyRootFilesystem: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+  - port: 8090
+    targetPort: http
+    protocol: TCP
+    name: http

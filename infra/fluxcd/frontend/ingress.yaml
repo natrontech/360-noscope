@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-natron-cloud
+    cert-manager.io/private-key-rotation-policy: Always
+spec:
+  ingressClassName: nginx-external
+  rules:
+  - host: 360.natron.cloud
+    http:
+      paths:
+        - path: "/"
+          pathType: Prefix
+          backend:
+            service:
+              name: frontend
+              port:
+                number: 8090
+  tls:
+  - hosts:
+      - "360.natron.cloud"
+    secretName: tls-360-natron-cloud
