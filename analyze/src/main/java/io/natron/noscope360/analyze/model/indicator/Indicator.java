@@ -1,5 +1,8 @@
 package io.natron.noscope360.analyze.model.indicator;
 
+import io.natron.noscope360.analyze.model.enums.Dimension;
+import io.natron.noscope360.analyze.model.enums.Theme;
+
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.function.Function;
@@ -7,8 +10,8 @@ import java.util.function.Function;
 
 public abstract class Indicator<T> {
 
-    protected String category; // TODO replace with enum
-    protected String theme; // TODO replace with enum
+    protected Dimension dimension;
+    protected Theme theme;
     protected String name;
     protected LocalDate date;
 
