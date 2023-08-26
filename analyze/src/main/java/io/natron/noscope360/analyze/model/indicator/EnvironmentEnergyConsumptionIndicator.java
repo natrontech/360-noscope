@@ -3,9 +3,9 @@ package io.natron.noscope360.analyze.model.indicator;
 /**
  * Berechnung: Im Idealfall direkter Energiebrauch von Gemeinde nehmen
  * (von Gemeinde direkt oder anderen Daten). Ansonsten ersten Annährung:
- *
+ * <p>
  * Abgleichen, ob die Gemeinde Energiestadt ist oder ob sie 2000-Watt Areale aufweisen.
- *
+ * <p>
  * Skala für Energieverbrauch orientiert sich am Idealwert: der 2000 Watt
  * Gesellschaft sowie dem Minimum, Maximum und Mittelwert der Schweiz.
  */
@@ -21,7 +21,6 @@ public class EnvironmentEnergyConsumptionIndicator extends Indicator<Double> {
     }
 
     /**
-     *
      * 10 < 2 MWh/Jahr pro Person
      * 9= 2-2.5 MWh/Jahr pro Person
      * 8= 2.5-3 MWh/Jahr pro Person

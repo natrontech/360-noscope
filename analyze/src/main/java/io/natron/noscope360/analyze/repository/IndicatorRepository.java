@@ -1,7 +1,9 @@
 package io.natron.noscope360.analyze.repository;
 
-import io.natron.noscope360.analyze.model.indicator.Indicator;
+import io.natron.noscope360.analyze.model.entity.IndicatorData;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IndicatorRepository extends ElasticsearchRepository<Indicator, String> {
+@Repository
+public interface IndicatorRepository extends ElasticsearchRepository<IndicatorData, String> {
 }

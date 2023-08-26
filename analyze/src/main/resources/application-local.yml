@@ -1,6 +1,0 @@
-noscope360:
-  elastic:
-    host: 'localhost'
-    port: 9200
-    username: 'elastic'
-    password: 'secret'

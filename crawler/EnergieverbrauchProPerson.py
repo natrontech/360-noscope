@@ -5,11 +5,11 @@
 Umwelt -> Energie -> Energieverbrauch pro Person
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Energieverbrauch pro Person",
@@ -20,11 +20,11 @@ Umwelt -> Energie -> Energieverbrauch pro Person
 Umelt -> Energie -> Anteil Elektroautos
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Anteil Elektroautos",
@@ -35,11 +35,11 @@ Umelt -> Energie -> Anteil Elektroautos
 Umelt -> Energie -> Erneuerbar Heizen
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
     "indicator": "Erneuerbar Heizen",
@@ -47,17 +47,17 @@ Umelt -> Energie -> Erneuerbar Heizen
 }
 -----------------------
 
-Umelt -> Energie -> Produktion Solarstrom
+Umelt -> Energie -> Fortschritt Ausbau Sonnenenergie
 
 {
-    "timestamp": "2023-08-26T02:39:34.096867",
+    "@timestamp": '2023-08-26 09:46:56.898755',
     "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
     "plz": null,
     "municipality": "Burgdorf",
-    "canton": "BE",
+    "canton": None,
     "dimension": "Umwelt",
     "theme": "Energie",
-    "indicator": "Produktion Solarstrom",
+    "indicator": "Fortschritt Ausbau Sonnenenergie",
     "value": 20
 }
 '''
@@ -65,13 +65,16 @@ Umelt -> Energie -> Produktion Solarstrom
 
 import os
 import requests
+from datetime import datetime
 from elasticsearch import Elasticsearch
-from elasticsearch import helpers
 
+ElasticURI = os.environ['ELASTIC_PROTOCOL'] + '://' + os.environ['ELASTIC_HOST'] + ':' + os.environ['ELASTIC_PORT']
 
 ElasticsearchClient = Elasticsearch(
-    host=os.environ['ELASTIC_URI'],
-    api_key=("id", os.environ['ELASTIC_API_KEY'])
+    ElasticURI,
+    basic_auth=(os.environ['ELASTIC_USER'], os.environ['ELASTIC_PASSWORD']),
+    verify_certs=False,
+    ssl_show_warn=False
 )
 
 
@@ -79,24 +82,27 @@ DataUri = 'https://opendata.geoimpact.ch/energiereporter/energyreporter_municipa
 Data = requests.get(DataUri)
 Data = Data.json()
 
+KpiDictionary = {
+    "emobilityshare": "Anteil Elektroautos",
+    "renewableheatingshare": "Erneuerbar Heizen",
+    "elecconsumption": "Energieverbrauch pro Person",
+    "pvusage": "Fortschritt Ausbau Sonnenenergie"
+}
 
-emobilityshare = []
-renewableheatingshare = []
-elecconsumption = []
-pvusage = [] # Solar Usage
+def sendDataToElk(Data):
+    for DataPoint in Data:
+        DataObject = {
+            "@timestamp": datetime.utcnow(),
+            "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
+            "plz": None,
+            "municipality": DataPoint["regionName"],
+            "canton": None,
+            "dimension": "Umwelt",
+            "theme": "Energie",
+            "indicator": KpiDictionary[DataPoint["kpiName"]],
+            "value": DataPoint["value"] if isinstance(DataPoint["value"], float) else DataPoint["value"]["value"]
+        }
+  
+        ElasticsearchClient.index(index=os.environ['ELASTIC_INDEX'], body=DataObject)
 
-for DataPoint in Data:
-    if DataPoint["kpiName"] == "emobilityshare":
-        emobilityshare.append(DataPoint)
-    elif DataPoint["kpiName"] == "renewableheatingshare":
-        renewableheatingshare.append(DataPoint)
-    elif DataPoint["kpiName"] == "elecconsumption":
-        elecconsumption.append(DataPoint)
-    elif DataPoint["kpiName"] == "pvusage":
-        pvusage.append(DataPoint)
-
-print(pvusage[10])
-
-
-res = helpers.bulk(ElasticsearchClient, <INSERT_DATA_HERE>)
-print(res)
+sendDataToElk(Data)

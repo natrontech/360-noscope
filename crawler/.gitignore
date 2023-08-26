@@ -1,2 +1,2 @@
 .venv
-./arcgis/__pycache__
+.env

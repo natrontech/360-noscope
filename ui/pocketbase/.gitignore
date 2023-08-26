@@ -1,0 +1,9 @@
+/.cache
+/pocketbase
+/pocketbase*.zip
+/pb_data
+/tmp
+/bin
+./pocketbase
+360
+vendor/

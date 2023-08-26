@@ -8,9 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service responsible for handling operations related to scales.
@@ -46,11 +47,11 @@ public class ScaleService {
      * @param dimension The name of the dimension for which themes are to be retrieved.
      * @return List of themes associated with the specified dimension.
      */
-    public List<Theme> getThemes(String dimension) {
-        List<Theme> themes = new ArrayList<>();
+    public Map<String, String> getThemes(String dimension) {
+        Map<String, String> themes = new HashMap<>();
         for (Theme theme : Theme.values()) {
             if (theme.getDimension() == Dimension.valueOf(dimension)) {
-                themes.add(theme);
+                themes.put(theme.name(), theme.getDescription());
             }
         }
         return themes;
