@@ -14,8 +14,7 @@ export const load: PageLoad = async ({ params }) => {
         const questions: QuestionUi[] = getQuestions(survey).map(
             (question: SurveyQuestionsResponse) => {
                 const type = getQuestionType(question);
-                const answer = type === "bool" ? false : null;
-                return { questionId: question.id, question: question.question, type, answer };
+                return { questionId: question.id, question: question.question, type, answer: 0 };
             }
         );
 
