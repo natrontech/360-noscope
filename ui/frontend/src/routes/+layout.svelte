@@ -5,7 +5,7 @@
   import { site } from "$lib/config";
   import { beforeNavigate } from "$app/navigation";
   import { Toaster } from "svelte-french-toast";
-  
+
   $: title = $metadata.title ? $metadata.title + " | " + site.name : site.name;
   $: description = $metadata.description ?? site.description;
 
@@ -22,7 +22,7 @@
 </svelte:head>
 
 <div>
-  <Toaster position="bottom-center" />
+  <Toaster position="top-center" />
   <!-- only display nav when not on /login -->
   <slot />
 </div>
