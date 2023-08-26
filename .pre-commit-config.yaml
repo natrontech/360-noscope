@@ -12,6 +12,6 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-merge-conflict
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.16.2
+    rev: v8.18.0
     hooks:
       - id: gitleaks
