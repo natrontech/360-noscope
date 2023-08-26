@@ -48,7 +48,7 @@
               fill="{showNotifications ? 'currentColor' : 'none'}"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="currentColor"
+              stroke="white"
               aria-hidden="true"
             >
               <path
