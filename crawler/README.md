@@ -23,9 +23,7 @@ The following JSON reference should be used when pushing data to the ELK stack:
 {
   "timestamp": "2023-08-26T02:39:34.096867", //datetime.now().isoformat(),
   "source": "https://example.com",
-  "plz": 1234,
   "municipality": "Burgdorf",
-  "canton": "BE",
   "dimension": "environment", // one of: "environment" | "social" | "economy"
   "theme": "Klima",
   "indicator": "Treibhausgas-Emissione pro Einwohner*in",

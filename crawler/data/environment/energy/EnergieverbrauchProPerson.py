@@ -94,9 +94,7 @@ def sendDataToElk(Data):
         DataObject = {
             "@timestamp": datetime.utcnow(),
             "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
-            "plz": None,
             "municipality": DataPoint["regionName"],
-            "canton": None,
             "dimension": "environment",
             "theme": "Energie",
             "indicator": KpiDictionary[DataPoint["kpiName"]],
