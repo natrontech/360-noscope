@@ -8,6 +8,7 @@ import type {
 } from '$lib/pocketbase/generated-types';
 import { getQuestionIndicator, getQuestions, getQuestionType } from '$lib/utils/survey.utils';
 import type { QuestionUi } from "$lib/types/generic";
+import { goto } from '$app/navigation';
 export const load: PageLoad = async ({ params }) => {
     const { id } = params;
 
@@ -28,5 +29,6 @@ export const load: PageLoad = async ({ params }) => {
         return { survey, questions, municipality, participant, id };
     } catch (error) {
         toast.error("Error: Umfrage existiert nicht");
+        goto(`/error/500`)
     }
 };

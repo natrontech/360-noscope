@@ -2,20 +2,13 @@
   import ShowSurveyToggle from "$lib/components/base/ShowSurveyToggle.svelte";
   import { client, logout } from "$lib/pocketbase";
   import { Search } from "lucide-svelte";
+  import { avatarUrl } from '$lib/utils/user.utils';
+  import { goto } from '$app/navigation';
 
-  let avatarUrl: string = "";
-
-  if (client.authStore) {
-    avatarUrl =
-      "/api/files/" +
-      client.authStore.model?.collectionId +
-      "/" +
-      client.authStore.model?.id +
-      "/" +
-      client.authStore.model?.avatar;
+  const avatar = avatarUrl();
+  function goHome() {
+    goto('/app');
   }
-
-  console.log(avatarUrl);
 </script>
 
 <div class="">
@@ -26,7 +19,7 @@
       class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
     >
       <div class="flex-shrink-0">
-        <img class="block h-12 w-12" src="/images/360-noscope.png" alt="360-noscope" />
+        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope.png" alt="360-noscope" on:click={goHome} />
       </div>
 
       <!-- Separator -->
@@ -80,7 +73,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                   class="h-8 w-8 rounded-full bg-gray-50"
-                  src={avatarUrl}
+                  src={avatar}
                   alt=""
                 />
                 <span class="hidden lg:flex lg:items-center">
