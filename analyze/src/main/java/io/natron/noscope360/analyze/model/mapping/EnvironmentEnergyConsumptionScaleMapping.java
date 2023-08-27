@@ -1,8 +1,7 @@
-package io.natron.noscope360.analyze.model.indicator;
+package io.natron.noscope360.analyze.model.mapping;
 
+import io.natron.noscope360.analyze.helper.ScaleConvertable;
 import io.natron.noscope360.analyze.model.dto.IndicatorDto;
-
-import java.util.List;
 
 /**
  * Berechnung: Im Idealfall direkter Energiebrauch von Gemeinde nehmen

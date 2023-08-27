@@ -1,11 +1,12 @@
 package io.natron.noscope360.analyze.service;
 
+import io.natron.noscope360.analyze.helper.IndicatorNameExtractor;
+import io.natron.noscope360.analyze.helper.ScaleMappingDelegator;
 import io.natron.noscope360.analyze.model.dto.*;
+import io.natron.noscope360.analyze.model.entity.IdentifiableValue;
 import io.natron.noscope360.analyze.model.entity.Municipality;
 import io.natron.noscope360.analyze.model.entity.QualitativeData;
 import io.natron.noscope360.analyze.model.entity.QuantitativeData;
-import io.natron.noscope360.analyze.model.entity.IdentifiableValue;
-import io.natron.noscope360.analyze.model.indicator.ScaleMappingDelegator;
 import io.natron.noscope360.analyze.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class responsible for handling municipality-related operations.
+ */
 @Service
 public class MunicipalityService {
 
@@ -26,6 +30,16 @@ public class MunicipalityService {
     private final ThemeRepository themeRepository;
     private final IndicatorRepository indicatorRepository;
 
+    /**
+     * Constructs a new instance of {@link MunicipalityService}.
+     *
+     * @param quantitativeDataRepository Repository to access quantitative data.
+     * @param qualitativeDataRepository  Repository to access qualitative data.
+     * @param municipalityRepository     Repository to access municipality data.
+     * @param dimensionRepository        Repository to access dimension data.
+     * @param themeRepository            Repository to access theme data.
+     * @param indicatorRepository        Repository to access indicator data.
+     */
     public MunicipalityService(QuantitativeDataRepository quantitativeDataRepository, QualitativeDataRepository qualitativeDataRepository,
                                MunicipalityRepository municipalityRepository, DimensionRepository dimensionRepository,
                                ThemeRepository themeRepository, IndicatorRepository indicatorRepository) {
@@ -35,9 +49,18 @@ public class MunicipalityService {
         this.dimensionRepository = dimensionRepository;
         this.themeRepository = themeRepository;
         this.indicatorRepository = indicatorRepository;
+
+        log.info("MunicipalityService initialized.");
     }
 
+    /**
+     * Fetches an overview of all municipalities.
+     *
+     * @return A list of {@link MunicipalityOverviewDto} representing the overview of all municipalities.
+     */
     public List<MunicipalityOverviewDto> getMunicipalities() {
+        log.info("Fetching overview for all municipalities...");
+
         List<MunicipalityOverviewDto> municipalitiesOverviews = new ArrayList<>();
         municipalityRepository.findAll().forEach(municipality -> {
             MunicipalityDto municipalityDto = getMunicipalityById(municipality.getBfsNr());
@@ -59,7 +82,14 @@ public class MunicipalityService {
         return municipalitiesOverviews;
     }
 
+    /**
+     * Computes statistics for all municipalities.
+     *
+     * @return {@link MunicipalityStatsDto} representing the statistics of all municipalities.
+     */
     public MunicipalityStatsDto getMunicipalitiesStats() {
+        log.info("Computing statistics for all municipalities...");
+
         List<MunicipalityOverviewDto> municipalities = getMunicipalities();
         int totalMunicipalities = municipalities.size();
         double avgQuantitativeRating = calcAvgRating(municipalities.stream().map(avg ->
@@ -69,7 +99,15 @@ public class MunicipalityService {
         return new MunicipalityStatsDto(totalMunicipalities, avgQuantitativeRating, avgQualitativeRating);
     }
 
+    /**
+     * Fetches municipality details by its ID.
+     *
+     * @param id The ID of the municipality.
+     * @return {@link MunicipalityDto} containing details of the specified municipality.
+     */
     public MunicipalityDto getMunicipalityById(int id) {
+        log.info("Fetching details for municipality with ID: {}", id);
+
         Municipality municipality = municipalityRepository.findByBfsNr(id).orElseThrow();
 
         List<QuantitativeData> quantitativeDataList = quantitativeDataRepository.findByMunicipality(municipality.getMunicipality());
@@ -86,10 +124,24 @@ public class MunicipalityService {
                 municipality.getCanton(), municipality.getDistrict(), quantitativeData, qualitativeData);
     }
 
+    /**
+     * Calculates the average rating from a list of ratings.
+     *
+     * @param ratings A list of integer ratings.
+     * @return The average rating.
+     */
     private double calcAvgRating(List<Integer> ratings) {
         return ratings.stream().mapToDouble(a -> a).average().orElseThrow();
     }
 
+    /**
+     * Maps a list of data to a list of {@link IndicatorDto}.
+     *
+     * @param <T>       Type of data.
+     * @param dataList  List of data.
+     * @param extractor Function to extract indicator name from the data.
+     * @return A list of {@link IndicatorDto}.
+     */
     private <T extends IdentifiableValue> List<IndicatorDto> mapToIndicatorDtoList(List<T> dataList, IndicatorNameExtractor<T> extractor) {
         ScaleMappingDelegator delegator = new ScaleMappingDelegator();
         var result = dataList.stream()
@@ -105,6 +157,12 @@ public class MunicipalityService {
         return result;
     }
 
+    /**
+     * Maps a list of {@link IndicatorDto} to a list of {@link ThemeDto}.
+     *
+     * @param indicatorDtoList List of {@link IndicatorDto}.
+     * @return A list of {@link ThemeDto}.
+     */
     private List<ThemeDto> mapToThemeDtoList(List<IndicatorDto> indicatorDtoList) {
         return indicatorDtoList.stream()
                 .flatMap(indicatorDto -> themeRepository.findByName(indicatorDto.getName()).stream())
@@ -113,6 +171,12 @@ public class MunicipalityService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Maps a list of {@link ThemeDto} to a list of {@link DimensionDto}.
+     *
+     * @param themeDtoList List of {@link ThemeDto}.
+     * @return A list of {@link DimensionDto}.
+     */
     private List<DimensionDto> mapToDimensionDtoList(List<ThemeDto> themeDtoList) {
         return themeDtoList.stream()
                 .flatMap(themeDto -> dimensionRepository.findByName(themeDto.name()).stream())

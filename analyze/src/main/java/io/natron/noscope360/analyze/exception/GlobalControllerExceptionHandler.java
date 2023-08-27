@@ -18,6 +18,32 @@ public class GlobalControllerExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
 
     /**
+     * Handles exceptions thrown when a survey is not found.
+     * This method logs the error and sends back a structured response to the client.
+     *
+     * @param exception The exception that was thrown.
+     * @return A structured ProblemDetail indicating the status and error message.
+     */
+    @ExceptionHandler(SurveyNotFoundException.class)
+    public ProblemDetail handleSurveyNotFound(SurveyNotFoundException exception) {
+        log.error("Survey not found with error message: " + exception.getMessage(), exception);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
+    }
+
+    /**
+     * Handles exceptions thrown when a seat is not found.
+     * This method logs the error and sends back a structured response to the client.
+     *
+     * @param exception The exception that was thrown.
+     * @return A structured ProblemDetail indicating the status and error message.
+     */
+    @ExceptionHandler(InvalidInputException.class)
+    public ProblemDetail handleInvalidInput(InvalidInputException exception) {
+        log.error("There was an invalid input with error message: " + exception.getMessage(), exception);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
+    /**
      * Handles general exceptions thrown from any controller methods.
      * This method logs the error and sends back a structured response to the client.
      *
