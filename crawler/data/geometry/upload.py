@@ -72,6 +72,10 @@ def upload_data_elastic(index, data):
         for error in e.errors:
             print(f"Failed to index document: {error['index']['_id']}, reason: {error['index']['error']['reason']}")
 
+with open('local_cache.json') as json_file:
+    data = json.load(json_file)
+    upload_data_elastic('geo-data', data)
+
 DataBulk = []
 for DataPoint in Data:
 

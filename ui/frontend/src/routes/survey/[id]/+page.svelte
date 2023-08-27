@@ -13,10 +13,12 @@
   async function submit() {
     sent = true;
     const result = {
-        id: data.survey.id,
-        questions: data.questions.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator })),
+        id: data.survey?.id,
+        municipalityId: data.municipality?.id,
+        questions: data.questions?.map(q => ({ id: q.questionId, answer: q.answer, question: q.question, indicator: q.indicator, theme: q.theme, dimension: q.dimension})),
     }
-    // ToDo: send result to backend
+    // TODO: send result to backend
+    // Missing municipalityId, theme, dimension
     console.log(result);
   }
 </script>
@@ -105,7 +107,7 @@
     <Devider />
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="submit" class="btn btn-primary">Abschicken</button>
+      <button type="submit" class="btn btn-neutral">Abschicken</button>
     </div>
   </form>
 {/if}
