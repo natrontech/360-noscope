@@ -22,6 +22,10 @@
   Digital evolution of the 360° scan analysis tool of <a href="https://planval.ch/">Planval AG</a>! :rocket:
 </p>
 
+<p align="center">
+  This project was created at the <a href="https://bernhackt.ch/">BernHackt</a> Hackathon in 2023.
+</p>
+
 <br>
 
 ## Overview
@@ -32,7 +36,7 @@ In order to support swiss municipalities in shaping a livable future and promoti
 
 ### Components
 
-For more details, have a look at the [architecture](./docs/architecture.md)
+For more details, have a look at the [architecture](./docs/architecture.md).
 
 - [Analyzer](./analyze): Perform analytics on data & provide a REST-API for the web frontend
 - [Data Crawlers](./crawler): Python scripts to grab data from other APIs on the internet and push it to the ELK stack
