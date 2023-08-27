@@ -24,7 +24,7 @@ The analyzer component is written with Java Spring Boot. The analyzer reads the 
 
 #### REST-API Documentation
 
-You can find the Swagger API Documentation here: [openapi-docs.json](./assets/openapi-docs.json) or on following URL: http://127.0.0.1:8000/swagger-ui/index.html (see [getting started](./getting-started)).
+You can find the Swagger API Documentation here: [openapi-docs.json](./assets/openapi-docs.json) or on following URL: http://127.0.0.1:8000/swagger-ui/index.html (see [getting started](./getting-started.md)).
 
 ### UI
 
