@@ -75,7 +75,7 @@
 </script>
 
 <div>
-  <h3 class="text-base font-semibold leading-6 text-gray-900">Letzten 30 Tage</h3>
+  <h3 class="text-base font-semibold leading-6 text-white">Letzten 30 Tage</h3>
 
   <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
     <div

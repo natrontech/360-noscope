@@ -12,3 +12,4 @@
     <MunicipalitiesListItem {participatingMunicipality} />
   {/each}
 </ul>
+

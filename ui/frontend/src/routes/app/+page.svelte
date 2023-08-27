@@ -5,10 +5,10 @@
   import SurveysFilter from "$lib/components/data/Surveys/SurveysFilter.svelte";
   import SurveysList from "$lib/components/data/Surveys/SurveysList.svelte";
   import showSurvey from "$lib/stores/toggle";
-  import { fade, fly, slide } from "svelte/transition";
+  import { fly } from "svelte/transition";
 </script>
 
-<div class="absolute top-5 right-5 left-5 bottom-5 overflow-hidden">
+<div class="absolute top-5 right-0 left-0 bottom-5 overflow-hidden">
   <div class="absolute top-0 w-full">
     <Stats />
   </div>

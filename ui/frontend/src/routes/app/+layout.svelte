@@ -1,16 +1,17 @@
 <script lang="ts">
   import ShowSurveyToggle from "$lib/components/base/ShowSurveyToggle.svelte";
   import { client, logout } from "$lib/pocketbase";
-  import { Search } from "lucide-svelte";
-  import { avatarUrl } from '$lib/utils/user.utils';
-  import { goto } from '$app/navigation';
-  import Notification from '$lib/components/base/Notification.svelte';
   import { fly } from 'svelte/transition';
   import { apiMunicipalitiesResponse } from '$lib/mock/analyze-data';
+  import { Bot, Search } from "lucide-svelte";
+  import { avatarUrl } from "$lib/utils/user.utils";
+  import { goto } from "$app/navigation";
+  import Notification from "$lib/components/base/Notification.svelte";
+  import GlowingButton from "$lib/components/base/GlowingButton.svelte";
 
   const avatar = avatarUrl();
   function goHome() {
-    goto('/app');
+    goto("/app");
   }
 
   let showNotifications = false;
@@ -26,7 +27,12 @@
       class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4  sm:gap-x-6 sm:px-6 lg:px-8"
     >
       <div class="flex-shrink-0">
-        <img class="block h-12 w-12 cursor-pointer" src="/images/360-noscope-white.png" alt="360-noscope" on:click={goHome} />
+        <img
+          class="block h-12 w-12 cursor-pointer"
+          src="/images/360-noscope-white.png"
+          alt="360-noscope"
+          on:click={goHome}
+        />
       </div>
 
       <!-- Separator -->
@@ -56,25 +62,30 @@
         </form>
         <div class="flex items-center gap-x-4 lg:gap-x-6">
           <div class="relative">
-          <button type="button" class="-m-2.5 p-2.5" on:click={() => showNotifications = !showNotifications}>
-            <span class="sr-only">View notifications</span>
-            <div
-                    class="absolute bottom-auto left-auto right-1 top-1 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 rounded-full bg-red-600 p-1.5 text-xs"></div>
-            <svg
-              class="h-6 w-6"
-              fill="{showNotifications ? 'white' : 'none'}"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="white"
-              aria-hidden="true"
+            <button
+              type="button"
+              class="-m-2.5 p-2.5"
+              on:click={() => (showNotifications = !showNotifications)}
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+              <span class="sr-only">View notifications</span>
+              <div
+                class="absolute bottom-auto left-auto right-1 top-1 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 rounded-full bg-red-600 p-1.5 text-xs"
               />
-            </svg>
-          </button>
+              <svg
+                class="h-6 w-6"
+                fill={showNotifications ? "white" : "none"}
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="white"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                />
+              </svg>
+            </button>
             {#if showNotifications}
               <Notification />
             {/if}
@@ -95,15 +106,10 @@
                 tabIndex={0}
               >
                 <span class="sr-only">Open user menu</span>
-                <img
-                  class="h-8 w-8 rounded-full bg-white"
-                  src={avatar}
-                  alt=""
-                />
+                <img class="h-8 w-8 rounded-full bg-white" src={avatar} alt="" />
                 <span class="hidden lg:flex lg:items-center">
-                  <span
-                    class="ml-4 text-sm font-semibold leading-6 text-white"
-                    aria-hidden="true">{client.authStore.model?.name}</span
+                  <span class="ml-4 text-sm font-semibold leading-6 text-white" aria-hidden="true"
+                    >{client.authStore.model?.name}</span
                   >
                   <svg
                     class="ml-2 h-5 w-5 text-white"
@@ -140,9 +146,10 @@
 
     <!-- Main content -->
     <div
-      class="absolute top-40 bottom-10 left-10 right-10 bg-white p-10 overflow-y-scroll scrollbar-thin rounded-lg shadow-md"
+      class="absolute top-40 bottom-10 left-10 right-10  p-10 overflow-y-scroll scrollbar-thin rounded-lg "
     >
       <slot />
     </div>
+
   </div>
 </div>
