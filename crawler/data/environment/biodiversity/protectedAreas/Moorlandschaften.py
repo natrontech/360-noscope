@@ -1,12 +1,12 @@
 # Variables
 index = "geo-data"
 dimension = "geometry"
-indicator = "auen"
+indicator = "moorlandschaften"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-auen"
-lowerId = 657
-upperId = 982
-layername = "ch.bafu.bundesinventare-auen"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-moorlandschaften"
+lowerId = 340
+upperId = 441
+layername = "ch.bafu.bundesinventare-moorlandschaften"
 
 
 import os

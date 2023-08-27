@@ -1,12 +1,12 @@
 # Variables
 index = "geo-data"
 dimension = "geometry"
-indicator = "auen"
+indicator = "trockenweiden"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-auen"
-lowerId = 657
-upperId = 982
-layername = "ch.bafu.bundesinventare-auen"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-trockenwiesen_trockenweiden"
+lowerId = 149251
+upperId = 158726
+layername = "ch.bafu.bundesinventare-trockenwiesen_trockenweiden"
 
 
 import os

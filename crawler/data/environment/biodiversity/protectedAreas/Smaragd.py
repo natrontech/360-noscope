@@ -1,12 +1,12 @@
 # Variables
 index = "geo-data"
 dimension = "geometry"
-indicator = "auen"
+indicator = "smaragd"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-auen"
-lowerId = 657
-upperId = 982
-layername = "ch.bafu.bundesinventare-auen"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.schutzgebiete-smaragd"
+lowerId = 6
+upperId = 49
+layername = "ch.bafu.schutzgebiete-smaragd"
 
 
 import os

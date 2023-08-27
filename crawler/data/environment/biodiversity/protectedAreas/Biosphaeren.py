@@ -1,12 +1,12 @@
 # Variables
 index = "geo-data"
 dimension = "geometry"
-indicator = "auen"
+indicator = "biosphaerenreservate"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.bundesinventare-auen"
-lowerId = 657
-upperId = 982
-layername = "ch.bafu.bundesinventare-auen"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.schutzgebiete-biosphaerenreservate"
+lowerId = 49
+upperId = 54
+layername = "ch.bafu.schutzgebiete-biosphaerenreservate"
 
 
 import os
