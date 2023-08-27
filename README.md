@@ -52,4 +52,4 @@ For more information, go to the [docs](./docs).
 
 Trust me, I'm open source.  
 You can find the source code on [Github](https://github.com/natrontech/360-noscope).  
-License: GPL 3
+License: AGPL 3
