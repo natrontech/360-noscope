@@ -1,5 +1,6 @@
-package io.natron.noscope360.analyze.model.indicator;
+package io.natron.noscope360.analyze.model.mapping;
 
+import io.natron.noscope360.analyze.helper.ScaleConvertable;
 import io.natron.noscope360.analyze.model.dto.IndicatorDto;
 
 import java.util.ArrayList;
@@ -7,16 +8,14 @@ import java.util.List;
 
 public class EnvironmentEnergyQualityScaleMapping implements ScaleConvertable {
 
-    private static final int QUALITY_POTENTIAL_INDEX = 0;
-    private static final int QUALITY_RENEWABLE_INDEX = 1;
-    private static final int QUALITY_INNOVATION_INDEX = 2;
-    private static final int QUALITY_ECARS_INDEX = 3;
-
     public static final String QUALITY_POTENTIAL = "Potential Solarstrom";
     public static final String QUALITY_RENEWABLE = "Erneuerbar Heizen";
     public static final String QUALITY_INNOVATION = "Fortschritt Ausbau Sonnenenergie";
     public static final String QUALITY_ECARS = "Anteil Elektroautos";
-
+    private static final int QUALITY_POTENTIAL_INDEX = 0;
+    private static final int QUALITY_RENEWABLE_INDEX = 1;
+    private static final int QUALITY_INNOVATION_INDEX = 2;
+    private static final int QUALITY_ECARS_INDEX = 3;
     private List<Double> values = new ArrayList<>(4);
 
     @Override

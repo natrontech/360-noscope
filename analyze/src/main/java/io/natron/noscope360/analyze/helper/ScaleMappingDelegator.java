@@ -1,6 +1,8 @@
-package io.natron.noscope360.analyze.model.indicator;
+package io.natron.noscope360.analyze.helper;
 
 import io.natron.noscope360.analyze.model.dto.IndicatorDto;
+import io.natron.noscope360.analyze.model.mapping.EnvironmentEnergyConsumptionScaleMapping;
+import io.natron.noscope360.analyze.model.mapping.EnvironmentEnergyQualityScaleMapping;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,5 +1,7 @@
 package io.natron.noscope360.analyze.controller;
 
+import io.natron.noscope360.analyze.exception.InvalidInputException;
+import io.natron.noscope360.analyze.exception.SurveyNotFoundException;
 import io.natron.noscope360.analyze.model.dto.SurveyAnswersDto;
 import io.natron.noscope360.analyze.model.dto.SurveyDto;
 import io.natron.noscope360.analyze.model.dto.SurveyOverviewDto;
@@ -109,7 +111,7 @@ public class SurveyController {
             })
     @PostMapping(path = "/{id}/answers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public SurveyAnswersDto makeSurveyAnswers(@PathVariable String id, @RequestBody SurveyAnswersDto surveyAnswersDto) {
+    public SurveyAnswersDto makeSurveyAnswers(@PathVariable String id, @RequestBody SurveyAnswersDto surveyAnswersDto) throws SurveyNotFoundException, InvalidInputException {
         log.info("Providing answers for survey with ID: {}", id);
         return surveyService.makeSurveyAnswers(id, surveyAnswersDto);
     }

@@ -1,5 +1,8 @@
 package io.natron.noscope360.analyze.service;
 
+import io.natron.noscope360.analyze.client.SurveyClient;
+import io.natron.noscope360.analyze.exception.InvalidInputException;
+import io.natron.noscope360.analyze.exception.SurveyNotFoundException;
 import io.natron.noscope360.analyze.model.dto.SurveyAnswersDto;
 import io.natron.noscope360.analyze.model.dto.SurveyDto;
 import io.natron.noscope360.analyze.model.dto.SurveyOverviewDto;
@@ -15,9 +18,12 @@ import java.util.List;
 public class SurveyService {
 
     private static final Logger log = LoggerFactory.getLogger(SurveyService.class);
+
+    private final SurveyClient surveyClient;
     private final QualitativeDataRepository qualitativeDataRepository;
 
-    public SurveyService(QualitativeDataRepository qualitativeDataRepository) {
+    public SurveyService(SurveyClient surveyClient, QualitativeDataRepository qualitativeDataRepository) {
+        this.surveyClient = surveyClient;
         this.qualitativeDataRepository = qualitativeDataRepository;
     }
 
@@ -33,7 +39,14 @@ public class SurveyService {
         return null;
     }
 
-    public SurveyAnswersDto makeSurveyAnswers(String id, SurveyAnswersDto surveyAnswersDto) {
+    public SurveyAnswersDto makeSurveyAnswers(String id, SurveyAnswersDto surveyAnswersDto) throws SurveyNotFoundException, InvalidInputException {
+        if (!surveyClient.callSurveyAPI(id)) {
+            throw new SurveyNotFoundException("Survey not found: " + id);
+        }
+        if (!id.equals(surveyAnswersDto.id())) {
+            throw new InvalidInputException("Given ID and ID in the request body are not matching.");
+        }
+
         return null;
     }
 }
