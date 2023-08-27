@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "qualitative-data")
-public class QualitativeData {
+public class QualitativeData implements IdentifiableValue {
     @Id
     private String id;
     @Field(type = FieldType.Keyword)
@@ -15,8 +15,8 @@ public class QualitativeData {
     private String theme;
     @Field(type = FieldType.Keyword)
     private String indicator;
-    @Field(type = FieldType.Integer)
-    private int value;
+    @Field(type = FieldType.Double)
+    private double value;
     @Field(type = FieldType.Keyword)
     private String question;
     @Field(type = FieldType.Keyword)
@@ -38,6 +38,7 @@ public class QualitativeData {
         this.municipality = municipality;
     }
 
+    @Override
     public String getId() {
         return id;
     }
@@ -70,7 +71,8 @@ public class QualitativeData {
         this.indicator = indicator;
     }
 
-    public int getValue() {
+    @Override
+    public double getValue() {
         return value;
     }
 

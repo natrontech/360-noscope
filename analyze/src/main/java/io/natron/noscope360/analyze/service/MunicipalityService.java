@@ -4,7 +4,8 @@ import io.natron.noscope360.analyze.model.dto.*;
 import io.natron.noscope360.analyze.model.entity.Municipality;
 import io.natron.noscope360.analyze.model.entity.QualitativeData;
 import io.natron.noscope360.analyze.model.entity.QuantitativeData;
-import io.natron.noscope360.analyze.model.indicator.IndicatorScaleMapping;
+import io.natron.noscope360.analyze.model.entity.IdentifiableValue;
+import io.natron.noscope360.analyze.model.indicator.ScaleMappingDelegator;
 import io.natron.noscope360.analyze.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +44,12 @@ public class MunicipalityService {
             double avgQuantitativeRating = calcAvgRating(municipalityDto.quantitativeData().stream()
                     .flatMap(dimensionDto -> dimensionDto.themes().stream())
                     .flatMap(themeDto -> themeDto.indicators().stream())
-                    .map(IndicatorDto::rating)
+                    .map(IndicatorDto::getRating)
                     .toList());
             double avgQualitativeRating = calcAvgRating(municipalityDto.qualitativeData().stream()
                     .flatMap(dimensionDto -> dimensionDto.themes().stream())
                     .flatMap(themeDto -> themeDto.indicators().stream())
-                    .map(IndicatorDto::rating)
+                    .map(IndicatorDto::getRating)
                     .toList());
             MunicipalityOverviewDto municipalityOverviewDto = new MunicipalityOverviewDto(municipality.getBfsNr(),
                     municipality.getMunicipality(), municipality.getRegion(), municipality.getCanton(),
@@ -89,18 +90,24 @@ public class MunicipalityService {
         return ratings.stream().mapToDouble(a -> a).average().orElseThrow();
     }
 
-    private <T> List<IndicatorDto> mapToIndicatorDtoList(List<T> dataList, IndicatorNameExtractor<T> extractor) {
-        return dataList.stream()
-                .map(data -> indicatorRepository.findByName(extractor.extract(data))
-                        .orElseThrow())
+    private <T extends IdentifiableValue> List<IndicatorDto> mapToIndicatorDtoList(List<T> dataList, IndicatorNameExtractor<T> extractor) {
+        ScaleMappingDelegator delegator = new ScaleMappingDelegator();
+        var result = dataList.stream()
+                .map(data -> indicatorRepository.findByName(extractor.extract(data)).orElseThrow())
                 .distinct()
-                .map(indicator -> new IndicatorDto(indicator.getName(), indicator.getDescription(), IndicatorScaleMapping.mapping.get(indicator.getName()).toScale(dataList.))))
+                .map(indicator -> {
+                    var dto = new IndicatorDto(indicator.getName(), indicator.getDescription());
+                    delegator.addIndicator(dto, dataList.stream().filter(e -> e.getId().equals(indicator.getId())).findFirst().orElseThrow().getValue());
+                    return dto;
+                })
                 .collect(Collectors.toList());
+        delegator.bulkCalculateScales(result);
+        return result;
     }
 
     private List<ThemeDto> mapToThemeDtoList(List<IndicatorDto> indicatorDtoList) {
         return indicatorDtoList.stream()
-                .flatMap(indicatorDto -> themeRepository.findByName(indicatorDto.name()).stream())
+                .flatMap(indicatorDto -> themeRepository.findByName(indicatorDto.getName()).stream())
                 .distinct()
                 .map(theme -> new ThemeDto(theme.getName(), theme.getDescription(), indicatorDtoList))
                 .collect(Collectors.toList());

@@ -1,5 +1,7 @@
 package io.natron.noscope360.analyze.model.indicator;
 
+import io.natron.noscope360.analyze.model.dto.IndicatorDto;
+
 import java.util.List;
 
 /**
@@ -13,14 +15,22 @@ import java.util.List;
  */
 public class EnvironmentEnergyConsumptionScaleMapping implements ScaleConvertable {
 
+    public final static String INDICATOR_NAME = "Energieverbrauch pro Person";
+
+    private double value;
+
     @Override
-    public int toScale(List<Double> values) {
+    public double toScale(IndicatorDto dto) {
+        double v = mapConsumption(value);
+        dto.setRating((int) v);
+        return v;
+    }
 
-        if (values.size() > 1) {
-            throw new IllegalArgumentException("only one value expected");
+    @Override
+    public void addValue(String name, double value) {
+        if (name.equals(INDICATOR_NAME)) {
+            this.value = value;
         }
-
-        return mapConsumption(values.get(0));
     }
 
     /**

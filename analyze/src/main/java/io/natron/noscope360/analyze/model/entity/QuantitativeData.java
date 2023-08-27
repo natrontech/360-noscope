@@ -8,7 +8,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.time.LocalDateTime;
 
 @Document(indexName = "quantitative-data")
-public class QuantitativeData {
+public class QuantitativeData implements IdentifiableValue {
+
     @Id
     private String id;
     @Field(type = FieldType.Keyword)
@@ -41,6 +42,7 @@ public class QuantitativeData {
         this.timestamp = timestamp;
     }
 
+    @Override
     public String getId() {
         return id;
     }
@@ -73,6 +75,7 @@ public class QuantitativeData {
         this.indicator = indicator;
     }
 
+    @Override
     public double getValue() {
         return value;
     }
