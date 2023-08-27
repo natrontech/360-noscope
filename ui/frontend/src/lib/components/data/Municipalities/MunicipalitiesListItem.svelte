@@ -7,10 +7,22 @@
   import { Confetti } from "svelte-confetti";
   import ToggleConfetti from "$lib/components/base/ToggleConfetti.svelte";
   import { goto } from "$app/navigation";
+  import toast from "svelte-french-toast";
 
   export let participatingMunicipality: ParticipatingMunicipality;
 
   let loading: boolean = false;
+
+  $: if (loading) {
+    toast.promise(
+      new Promise((resolve) => setTimeout(resolve, 2000)),
+      {
+        loading: "Analysiere Daten...",
+        success: "Daten analysiert",
+        error: "Fehler beim Analysieren"
+      }
+    );
+  }
 
   function numberToFloat(number: number) {
     return number.toFixed(2);

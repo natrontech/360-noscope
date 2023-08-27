@@ -15,7 +15,7 @@ COPY ./frontend/package*.json ./
 RUN rm -rf ./node_modules
 RUN rm -rf ./build
 COPY ./frontend .
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 FROM alpine as runtime
