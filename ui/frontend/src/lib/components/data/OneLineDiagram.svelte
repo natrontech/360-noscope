@@ -84,10 +84,6 @@
     stroke-linecap: round;
   }
 
-  .point {
-    stroke-width: 1;
-  }
-
   .line {
     stroke-width: 2;
     stroke-linecap: round;

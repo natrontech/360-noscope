@@ -5,10 +5,10 @@
   import SurveysFilter from "$lib/components/data/Surveys/SurveysFilter.svelte";
   import SurveysList from "$lib/components/data/Surveys/SurveysList.svelte";
   import showSurvey from "$lib/stores/toggle";
-  import { fade, fly, slide } from "svelte/transition";
+  import { fly } from "svelte/transition";
 </script>
 
-<div class="absolute top-5 right-5 left-5 bottom-5 overflow-hidden">
+<div class="absolute top-0 right-5 left-5 bottom-0 overflow-hidden ">
   <div class="absolute top-0 w-full">
     <Stats />
   </div>
@@ -16,8 +16,8 @@
   {#if $showSurvey}
     <div
       class="absolute w-full overflow-y-scoll top-56 bottom-0 left-0 right-0"
-      in:fly={{ x: 50, duration: 100, delay: 100 }}
-      out:fly={{ x: 50, duration: 100 }}
+      in:fly|global={{ x: 50, duration: 100, delay: 100 }}
+      out:fly|global={{ x: 50, duration: 100 }}
     >
       <SurveysFilter />
       <div class="absolute top-10 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-none">
@@ -27,8 +27,8 @@
   {:else}
     <div
       class="absolute w-full overflow-y-scoll top-56 bottom-0 left-0 right-0"
-      in:fly={{ x: -50, duration: 100, delay: 100 }}
-      out:fly={{ x: -50, duration: 100 }}
+      in:fly|global={{ x: -50, duration: 100, delay: 100 }}
+      out:fly|global={{ x: -50, duration: 100 }}
     >
       <MunicipalitiesFilter />
       <div class="absolute top-10 bottom-0 left-0 right-0 overflow-y-scroll scrollbar-none">

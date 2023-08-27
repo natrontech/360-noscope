@@ -75,7 +75,7 @@
 </script>
 
 <div>
-  <h3 class="text-base font-semibold leading-6 text-gray-900">Letzten 30 Tage</h3>
+  <h3 class="text-base font-semibold leading-6 text-white">Letzten 30 Tage</h3>
 
   <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
     <div
@@ -85,8 +85,8 @@
         <div class="absolute rounded-md bg-neutral p-3">
           <div
             class="h-6 w-6 text-white"
-            in:fly={{ y: 50, duration: 100, delay: 100 }}
-            out:fly={{ y: -50, duration: 100 }}
+            in:fly|global={{ y: 50, duration: 100, delay: 100 }}
+            out:fly|global={{ y: -50, duration: 100 }}
           >
             <svelte:component this={stats[0].icon} />
           </div>
@@ -112,8 +112,8 @@
         <div class="absolute rounded-md bg-neutral p-3">
           <div
             class="h-6 w-6 text-white"
-            in:fly={{ y: 50, duration: 100, delay: 100 }}
-            out:fly={{ y: -50, duration: 100 }}
+            in:fly|global={{ y: 50, duration: 100, delay: 100 }}
+            out:fly|global={{ y: -50, duration: 100 }}
           >
             <svelte:component this={stats[1].icon} />
           </div>
@@ -139,8 +139,8 @@
         <div class="absolute rounded-md bg-neutral p-3">
           <div
             class="h-6 w-6 text-white"
-            in:fly={{ y: 50, duration: 100, delay: 100 }}
-            out:fly={{ y: -50, duration: 100 }}
+            in:fly|global={{ y: 50, duration: 100, delay: 100 }}
+            out:fly|global={{ y: -50, duration: 100 }}
           >
             <svelte:component this={stats[2].icon} />
           </div>

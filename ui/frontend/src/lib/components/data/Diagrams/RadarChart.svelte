@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Radar } from 'svelte-chartjs';
-    import { data } from './data.ts';
+    import { data } from './radar-data.js';
 
     import {
         Chart as ChartJS,

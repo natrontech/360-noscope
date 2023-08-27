@@ -1,10 +1,16 @@
 <script lang="ts">
   import type { ParticipatingMunicipality } from "$lib/types/analyze-data";
-  import { MoveHorizontal } from "lucide-svelte";
+  import { Bot, MoveHorizontal } from "lucide-svelte";
   import RatingLabel from "../RatingLabel.svelte";
   import OneLineDiagram from "../OneLineDiagram.svelte";
+  import GlowingButton from "$lib/components/base/GlowingButton.svelte";
+  import { Confetti } from "svelte-confetti";
+  import ToggleConfetti from "$lib/components/base/ToggleConfetti.svelte";
+  import { goto } from "$app/navigation";
 
   export let participatingMunicipality: ParticipatingMunicipality;
+
+  let loading: boolean = false;
 
   function numberToFloat(number: number) {
     return number.toFixed(2);
@@ -81,11 +87,31 @@
       </div>
     </div>
     <div class="flex flex-none items-center gap-x-4">
-      <a
-        href="#"
-        class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-neutral shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-        >Details</a
-      >
+      <ToggleConfetti>
+        <button
+          slot="label"
+          on:click={() => {
+            loading = true;
+            setTimeout(() => {
+              loading = false;
+              goto("/app/analyze");
+            }, 2000);
+          }}
+        >
+          <GlowingButton label="Analysieren" bind:loading />
+        </button>
+
+        <Confetti
+          y={[-0.5, 0.5]}
+          x={[-0.5, 0.5]}
+          colorRange={[30, 50]}
+          amount="30"
+          fallDistance="0px"
+          duration="1000"
+          size="4"
+        />
+      </ToggleConfetti>
+
       <div class="relative flex-none">
         <button
           type="button"

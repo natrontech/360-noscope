@@ -3,13 +3,13 @@
 </script>
 
 
-<div class="bg-white">
+<div class="">
   <!-- Filters -->
   <section aria-labelledby="filter-heading">
     <h2 id="filter-heading" class="sr-only">Filters</h2>
 
-    <div class="border-b-2 border-neutral bg-white pb-4">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-1">
+    <div class="border-b-2 border-neutral  pb-4">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5">
         <div class="relative inline-block text-left">
           <div>
             <button
