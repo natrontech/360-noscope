@@ -1,13 +1,12 @@
 <script lang="ts">
   import ShowSurveyToggle from "$lib/components/base/ShowSurveyToggle.svelte";
   import { client, logout } from "$lib/pocketbase";
-  import { fly } from 'svelte/transition';
-  import { apiMunicipalitiesResponse } from '$lib/mock/analyze-data';
-  import { Bot, Search } from "lucide-svelte";
+  import { fly } from "svelte/transition";
+  import { apiMunicipalitiesResponse } from "$lib/mock/analyze-data";
+  import { Search } from "lucide-svelte";
   import { avatarUrl } from "$lib/utils/user.utils";
   import { goto } from "$app/navigation";
   import Notification from "$lib/components/base/Notification.svelte";
-  import GlowingButton from "$lib/components/base/GlowingButton.svelte";
 
   const avatar = avatarUrl();
   function goHome() {
@@ -15,8 +14,8 @@
   }
 
   let showNotifications = false;
-  let search = '';
-  let list = apiMunicipalitiesResponse.municipalities.map(m => m.name);
+  let search = "";
+  let list = apiMunicipalitiesResponse.municipalities.map((m) => m.name);
 </script>
 
 <div>
@@ -51,10 +50,18 @@
             bind:value={search}
           />
           {#if search.length > 0}
-            <div class="absolute w-full top-full left-0" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
-              <div class=" shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5">
+            <div
+              class="absolute w-full top-full left-0"
+              in:fly={{ y: -50, duration: 300 }}
+              out:fly={{ y: -50, duration: 300 }}
+            >
+              <div
+                class=" shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5"
+              >
                 {#each list as item}
-                  <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => search = ''}>{item}</a>
+                  <a href="#" class="block p-2 hover:text-indigo-600" on:click={() => (search = "")}
+                    >{item}</a
+                  >
                 {/each}
               </div>
             </div>
@@ -150,6 +157,5 @@
     >
       <slot />
     </div>
-
   </div>
 </div>
