@@ -7,46 +7,42 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.LocalDateTime;
 
-@Document(indexName = "360noscope_data")
-public class IndicatorData {
+@Document(indexName = "quantitative-data")
+public class QuantitativeData implements IdentifiableValue {
+
     @Id
     private String id;
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String dimension;
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String theme;
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String indicator;
-    @Field(type = FieldType.Integer)
-    private int value;
-    @Field(type = FieldType.Text)
-    private String canton;
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Double)
+    private double value;
+    @Field(type = FieldType.Keyword)
     private String municipality;
-    @Field(type = FieldType.Integer)
-    private int plz;
     @Field(type = FieldType.Text)
     private String source;
-    @Field(type = FieldType.Date)
+    @Field(name = "@timestamp", type = FieldType.Date)
     private LocalDateTime timestamp;
 
-    public IndicatorData() {
+    public QuantitativeData() {
     }
 
-    public IndicatorData(String id, String dimension, String theme, String indicator, int value, String canton,
-                         String municipality, int plz, String source, LocalDateTime timestamp) {
+    public QuantitativeData(String id, String dimension, String theme, String indicator, double value,
+                            String municipality, String source, LocalDateTime timestamp) {
         this.id = id;
         this.dimension = dimension;
         this.theme = theme;
         this.indicator = indicator;
         this.value = value;
-        this.canton = canton;
         this.municipality = municipality;
-        this.plz = plz;
         this.source = source;
         this.timestamp = timestamp;
     }
 
+    @Override
     public String getId() {
         return id;
     }
@@ -79,20 +75,13 @@ public class IndicatorData {
         this.indicator = indicator;
     }
 
-    public int getValue() {
+    @Override
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
-    }
-
-    public String getCanton() {
-        return canton;
-    }
-
-    public void setCanton(String canton) {
-        this.canton = canton;
     }
 
     public String getMunicipality() {
@@ -101,14 +90,6 @@ public class IndicatorData {
 
     public void setMunicipality(String municipality) {
         this.municipality = municipality;
-    }
-
-    public int getPlz() {
-        return plz;
-    }
-
-    public void setPlz(int plz) {
-        this.plz = plz;
     }
 
     public String getSource() {

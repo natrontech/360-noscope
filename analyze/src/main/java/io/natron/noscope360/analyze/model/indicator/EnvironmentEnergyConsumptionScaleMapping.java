@@ -1,5 +1,9 @@
 package io.natron.noscope360.analyze.model.indicator;
 
+import io.natron.noscope360.analyze.model.dto.IndicatorDto;
+
+import java.util.List;
+
 /**
  * Berechnung: Im Idealfall direkter Energiebrauch von Gemeinde nehmen
  * (von Gemeinde direkt oder anderen Daten). Ansonsten ersten Annährung:
@@ -9,15 +13,24 @@ package io.natron.noscope360.analyze.model.indicator;
  * Skala für Energieverbrauch orientiert sich am Idealwert: der 2000 Watt
  * Gesellschaft sowie dem Minimum, Maximum und Mittelwert der Schweiz.
  */
-public class EnvironmentEnergyConsumptionIndicator extends Indicator<Double> {
+public class EnvironmentEnergyConsumptionScaleMapping implements ScaleConvertable {
 
-    public static final String CONSUMPTION_MAP_KEY = "consumption";
+    public final static String INDICATOR_NAME = "Energieverbrauch pro Person";
 
-    public EnvironmentEnergyConsumptionIndicator(Double value) {
-        super();
+    private double value;
 
-        values.put(CONSUMPTION_MAP_KEY, value);
-        mappings.put(CONSUMPTION_MAP_KEY, this::mapConsumption);
+    @Override
+    public double toScale(IndicatorDto dto) {
+        double v = mapConsumption(value);
+        dto.setRating((int) v);
+        return v;
+    }
+
+    @Override
+    public void addValue(String name, double value) {
+        if (name.equals(INDICATOR_NAME)) {
+            this.value = value;
+        }
     }
 
     /**
