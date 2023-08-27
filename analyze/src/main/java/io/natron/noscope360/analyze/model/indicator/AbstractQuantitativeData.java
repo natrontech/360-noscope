@@ -21,7 +21,7 @@ public abstract class AbstractQuantitativeData<T> {
         switch (doc.getIndicator()) {
             case "Energieverbrauch pro Person":
                 remainingIndicators.remove(doc);
-                return Pair.of(new EnvironmentEnergyConsumptionAbstractQuantitativeData(doc.getValue()), remainingIndicators);
+                return Pair.of(new EnvironmentEnergyConsumptionScaleMapping(doc.getValue()), remainingIndicators);
             case "Potential Solarstrom":
             case "Erneuerbar Heizen":
             case "Fortschritt Ausbau Sonnenenergie":
@@ -38,7 +38,7 @@ public abstract class AbstractQuantitativeData<T> {
                 throw new IllegalArgumentException("cannot map " + doc.getIndicator());
         }
     }
-    
+
     public Number calculateScale() {
 
         return values.keySet().stream()

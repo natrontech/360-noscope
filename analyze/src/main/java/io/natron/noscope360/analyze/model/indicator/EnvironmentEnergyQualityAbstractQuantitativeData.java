@@ -1,6 +1,8 @@
 package io.natron.noscope360.analyze.model.indicator;
 
-public class EnvironmentEnergyQualityAbstractQuantitativeData extends AbstractQuantitativeData<Double> {
+import java.util.List;
+
+public class EnvironmentEnergyQualityAbstractQuantitativeData implements ScaleConvertable {
 
     public static final String DEVELOPMENT_MAP_KEY = "development";
     public static final String ECARS_MAP_KEY = "ecars";
@@ -115,5 +117,14 @@ public class EnvironmentEnergyQualityAbstractQuantitativeData extends AbstractQu
         }
 
         return 10;
+    }
+
+    @Override
+    public int toScale(List<Double> values) {
+        if (values.size() > 4) {
+            throw new IllegalArgumentException("Only four value expected.");
+        }
+
+        return mapConsumption(values.get(0));
     }
 }

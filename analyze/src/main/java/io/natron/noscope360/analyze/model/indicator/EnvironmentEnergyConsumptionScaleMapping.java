@@ -1,5 +1,7 @@
 package io.natron.noscope360.analyze.model.indicator;
 
+import java.util.List;
+
 /**
  * Berechnung: Im Idealfall direkter Energiebrauch von Gemeinde nehmen
  * (von Gemeinde direkt oder anderen Daten). Ansonsten ersten Annährung:
@@ -9,15 +11,16 @@ package io.natron.noscope360.analyze.model.indicator;
  * Skala für Energieverbrauch orientiert sich am Idealwert: der 2000 Watt
  * Gesellschaft sowie dem Minimum, Maximum und Mittelwert der Schweiz.
  */
-public class EnvironmentEnergyConsumptionAbstractQuantitativeData extends AbstractQuantitativeData<Double> {
+public class EnvironmentEnergyConsumptionScaleMapping implements ScaleConvertable {
 
-    public static final String CONSUMPTION_MAP_KEY = "consumption";
+    @Override
+    public int toScale(List<Double> values) {
 
-    public EnvironmentEnergyConsumptionAbstractQuantitativeData(Double value) {
-        super();
+        if (values.size() > 1) {
+            throw new IllegalArgumentException("only one value expected");
+        }
 
-        values.put(CONSUMPTION_MAP_KEY, value);
-        mappings.put(CONSUMPTION_MAP_KEY, this::mapConsumption);
+        return mapConsumption(values.get(0));
     }
 
     /**

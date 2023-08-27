@@ -21,11 +21,13 @@ public class QualitativeData {
     private String question;
     @Field(type = FieldType.Keyword)
     private String survey;
+    @Field(type = FieldType.Keyword)
+    private String municipality;
 
     public QualitativeData() {
     }
 
-    public QualitativeData(String id, String dimension, String theme, String indicator, int value, String question, String survey) {
+    public QualitativeData(String id, String dimension, String theme, String indicator, int value, String question, String survey, String municipality) {
         this.id = id;
         this.dimension = dimension;
         this.theme = theme;
@@ -33,6 +35,7 @@ public class QualitativeData {
         this.value = value;
         this.question = question;
         this.survey = survey;
+        this.municipality = municipality;
     }
 
     public String getId() {
@@ -89,5 +92,13 @@ public class QualitativeData {
 
     public void setSurvey(String survey) {
         this.survey = survey;
+    }
+
+    public String getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 }

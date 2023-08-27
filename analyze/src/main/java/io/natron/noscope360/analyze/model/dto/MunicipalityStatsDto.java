@@ -1,4 +1,4 @@
 package io.natron.noscope360.analyze.model.dto;
 
-public record MunicipalityStatsDto(int totalMunicipalities, int avgQuantitativeRating, int avgQualitativeRating) {
+public record MunicipalityStatsDto(int totalMunicipalities, double avgQuantitativeRating, double avgQualitativeRating) {
 }

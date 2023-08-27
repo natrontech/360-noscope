@@ -87,7 +87,7 @@ public class MunicipalityController {
             security = @SecurityRequirement(name = "basicAuth"))
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public MunicipalityDto getMunicipalityById(@PathVariable String id) {
+    public MunicipalityDto getMunicipalityById(@PathVariable int id) {
         log.info("Retrieve data of a specific municipality with ID: {}", id);
         return municipalityService.getMunicipalityById(id);
     }
