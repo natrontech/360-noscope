@@ -7,6 +7,7 @@
   import { avatarUrl } from "$lib/utils/user.utils";
   import { goto } from "$app/navigation";
   import Notification from "$lib/components/base/Notification.svelte";
+  import Recommendations from "$lib/components/base/Recommendations.svelte";
 
   const avatar = avatarUrl();
   function goHome() {

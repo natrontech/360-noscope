@@ -13,7 +13,7 @@
         <div class="border-b border-gray-900/10 pb-12">
             <div class="flex justify-between">
                 <h2 class="text-base font-semibold leading-7 text-gray-900">Profil</h2>
-                <a class="btn btn-neutral" href="/app"><ArrowLeft /> Back</a>
+                <a class="btn btn-neutral" href="/app"><ArrowLeft /> Zurück</a>
             </div>
             <p class="mt-1 text-sm leading-6 text-gray-600">Diese Informationen werden öffentlich angezeigt.</p>
 

@@ -18,7 +18,6 @@
     avgQualitativeRating: 7.3
   };
 
-  let avgScoreSurveyDrift = 1.4;
 
   interface Stats {
     name: string;
@@ -75,7 +74,7 @@
 </script>
 
 <div>
-  <h3 class="text-base font-semibold leading-6 text-white">Letzten 30 Tage</h3>
+  <h3 class="text-base font-semibold leading-6 text-neutral mt-3">Letzten 30 Tage</h3>
 
   <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
     <div
@@ -94,6 +93,7 @@
         <p class="ml-16 truncate text-sm font-medium text-gray-500">{stats[0].name}</p>
       </dt>
       <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+
         <p class="text-2xl font-semibold text-gray-900">{stats[0].value}</p>
         <InDecrease difference={stats[0].difference} />
         <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">

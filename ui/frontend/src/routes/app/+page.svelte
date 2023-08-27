@@ -6,6 +6,8 @@
   import SurveysList from "$lib/components/data/Surveys/SurveysList.svelte";
   import showSurvey from "$lib/stores/toggle";
   import { fly } from "svelte/transition";
+
+
 </script>
 
 <div class="absolute top-0 right-5 left-5 bottom-0 overflow-hidden ">
