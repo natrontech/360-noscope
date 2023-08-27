@@ -88,7 +88,7 @@ public class MunicipalityService {
      * @return {@link MunicipalityStatsDto} representing the statistics of all municipalities.
      */
     public MunicipalityStatsDto getMunicipalitiesStats() {
-        log.info("Computing statistics for all municipalities...");
+        log.info("Computing statistics over all municipalities...");
 
         List<MunicipalityOverviewDto> municipalities = getMunicipalities();
         int totalMunicipalities = municipalities.size();
