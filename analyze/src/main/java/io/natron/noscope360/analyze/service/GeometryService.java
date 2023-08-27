@@ -34,7 +34,8 @@ public class GeometryService {
 
     public Geometry jsonToGeometry(String json) {
 
-        return OperatorImportFromJson.local().execute(Geometry.Type.Unknown, json).getGeometry();
+        MapGeometry map =  OperatorImportFromJson.local().execute(Geometry.Type.Unknown, json);
+        return map.getGeometry();
     }
 
     public GeometryCursor jsonToGeometryCursor(String json) {
