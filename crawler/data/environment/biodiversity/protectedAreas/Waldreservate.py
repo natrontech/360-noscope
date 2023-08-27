@@ -1,32 +1,12 @@
-# Datasource: https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json
-# This datasource feeds 4 different indicators.
-# The following datasets are extracted from the datasource:
-'''
-environment -> energy -> Energieverbrauch pro Person
-environment -> energy -> Anteil Elektroautos
-environment -> energy -> Erneuerbar Heizen
-environment -> energy -> Fortschritt Ausbau Sonnenenergie
-
-{
-    "@timestamp": '2023-08-26 09:46:56.898755',
-    "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
-    "municipality": "Burgdorf",
-    "dimension": "environment",
-    "theme": "energy",
-    "indicator": "Fortschritt Ausbau Sonnenenergie",
-    "value": 20
-}
-'''
-
 # Variables
-index = "geo-data-2"
+index = "geo-data"
 dimension = "geometry"
-indicator = "pronatura"
+indicator = "waldreservate"
 theme = "Metadata"
-source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.pronatura.naturschutzgebiete"
-lowerId = 11444
-upperId = 12220
-layername = "ch.pronatura.naturschutzgebiete"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.bafu.waldreservate"
+lowerId = 5232
+upperId = 8340
+layername = "ch.bafu.waldreservate"
 
 
 import os
@@ -85,5 +65,5 @@ for DataPoint in Data:
     })
 with open(f"local_cache_{indicator}.json", "w") as outfile:
     outfile.write(json.dumps(DataBulk, indent=4))
-
+    
 upload_data_elastic(index, DataBulk)

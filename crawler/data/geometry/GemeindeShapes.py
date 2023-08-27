@@ -1,93 +1,72 @@
-# Datasource: https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json
-# This datasource feeds 4 different indicators.
-# The following datasets are extracted from the datasource:
-'''
-environment -> Energie -> Energieverbrauch pro Person
-
-{
-    "@timestamp": '2023-08-26 09:46:56.898755',
-    "source": "https://opendata.geoimpact.ch/energiereporter/energyreporter_municipality_latest.json",
-    "municipality": "Burgdorf",
-    "dimension": "environment",
-    "theme": "Energie",
-    "indicator": "Energieverbrauch pro Person",
-    "value": [<geometry array>]
-}
-'''
+# Variables
+index = "geo-data"
+dimension = "geometry"
+indicator = "municipality"
+theme = "Metadata"
+source = "https://api3.geo.admin.ch/rest/services/api/MapServer/ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill"
+layername = "ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill"
 
 
-import json
 import os
-from time import sleep
 import requests
 from datetime import datetime
-from elasticsearch import Elasticsearch
-from dataclasses import dataclass
-from typing import List, Dict
+from elasticsearch import Elasticsearch, helpers
+import json
+from time import sleep
+import sys
+sys.path.append("../arcgis")
+# import service from service.py
+import service
 
+# Elastic Client
 ElasticURI = os.environ['ELASTIC_PROTOCOL'] + '://' + os.environ['ELASTIC_HOST'] + ':' + os.environ['ELASTIC_PORT']
-cache = []
-
 ElasticsearchClient = Elasticsearch(
     ElasticURI,
     basic_auth=(os.environ['ELASTIC_USER'], os.environ['ELASTIC_PASSWORD']),
     verify_certs=False,
     ssl_show_warn=False
 )
+Data = []
 
-@dataclass
-class Geometry:
-    rings: List[List[List[float]]]
-
-@dataclass
-class Result:
-    featureId: int
-    bbox: List[float]
-    layerBodId: str
-    layerName: str
-    id: int
-    geometry: Geometry
-    attributes: Dict[str, any]
-
-@dataclass
-class Data:
-    results: List[Result]
-
-def sendDataToElk(Data, gemname):
-    DataObject = {
-#        "@timestamp": datetime.utcnow(),
-        "source": "https://api3.geo.admin.ch/rest/services/api/MapServer/find?layer=ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill",
-        "municipality": gemname,
-        "dimension": "geometry",
-        "theme": "Metadata",
-        "indicator": "municipality",
-        "value": Data
-    } 
-    # Writing to sample.json
-    cache.append(DataObject)
-    print(DataObject['municipality'])
-
-
-#    ElasticsearchClient.index(index=os.environ['ELASTIC_INDEX'], body=DataObject)
-
-layerName = 'ch.swisstopo.swissboundaries3d-gemeinde-flaeche.fill'
-search = ''
-fieldName = 'gemname'
-Response = ''
-Result = ''
-counter = 0
 with open('municipality.json') as f:
     municipalityJson=json.load(f)
     for municipality in municipalityJson:
-        search = municipality['municipality']
-        DataUri = f'https://api3.geo.admin.ch/rest/services/api/MapServer/find?layer={layerName}&searchText={search}&searchField={fieldName}&returnGeometry=true'
-        Response = requests.get(DataUri)
-        Result = Data(**json.loads(Response.content))
-        geometry = Result.results[0]['geometry']
-        gemname = Result.results[0]['attributes']['gemname']
-        sendDataToElk(geometry,gemname)
-        counter += 1
-    with open("local_cache.json", "w") as outfile:
-        outfile.write(json.dumps(cache, indent=4))
-print(counter)
+        search = municipality['bfs_nr']
+        print(search)
+        Data.append(service.geometry_by_layer_and_value(layername, "id", search))
+
+def upload_data_elastic(index, data):
+
+    # Prepare data for bulk operation
+    bulk_data = []
+    for i in data:
+        bulk_data.append({
+            '_index': index,
+            '_source': i
+        })
+        
+    # Send data to elasticsearch using bulk operation
+    try:
+        helpers.bulk(ElasticsearchClient, bulk_data)
+        # Print success message
+        print(f"{len(bulk_data)} entities created")
+    except helpers.BulkIndexError as e:
+        # Print error message for each failed document
+        for error in e.errors:
+            print(f"Failed to index document: {error['index']['_id']}, reason: {error['index']['error']['reason']}")
+
+DataBulk = []
+for DataPoint in Data:
+    # Upload data to elastic
+    DataBulk.append({
+    #    "@timestamp": datetime.utcnow(),
+        "source": source,
+        "dimension": dimension,
+        "theme": theme,
+        "indicator": indicator,
+        "value": DataPoint
+    })
+with open(f"local_cache_{indicator}.json", "w") as outfile:
+    outfile.write(json.dumps(DataBulk, indent=4))
     
+# upload_data_elastic(index, DataBulk)

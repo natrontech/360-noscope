@@ -17,11 +17,12 @@ def geometry_by_layer_and_value(layerName, fieldName, value):
 def geometries_for_values(layerName, fieldName, lowerBound, upperBound):
     geometries = []
     for v in range(lowerBound, upperBound+1):
+        print(v)
         geometries.append(geometry_by_layer_and_value(layerName, fieldName, v))
     return geometries
 
 def find(layerName, search, fieldName):
-    requestUrl = f'https://api3.geo.admin.ch/rest/services/api/MapServer/find?layer={layerName}&searchText={search}&searchField={fieldName}&returnGeometry=true'
+    requestUrl = f'https://api3.geo.admin.ch/rest/services/api/MapServer/find?layer={layerName}&searchText={search}&searchField={fieldName}&contains=false&returnGeometry=true'
     response = requests.get(requestUrl)
     if response.status_code == 200:
         return models.Data(**json.loads(response.content))
