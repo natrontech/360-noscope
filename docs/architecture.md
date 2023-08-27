@@ -1,10 +1,10 @@
 # Architecture
 
-![Architecture](../assets/diagrams/architecture.png)
+![Architecture](./assets/architecture.png)
 
 ## Component Diagram
 
-![Component Diagram](../assets/diagrams/componentDiagram.png)
+![Component Diagram](./assets/componentDiagram.jpg)
 
 ### Frontend
 
