@@ -1,0 +1,625 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "360-Noscope Analyzer",
+      "description": "This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.",
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8000",
+        "description": "Generated server url"
+      }
+    ],
+    "paths": {
+      "/api/surveys/{id}/answers": {
+        "post": {
+          "tags": [
+            "survey-controller"
+          ],
+          "summary": "Provide answers for a survey.",
+          "operationId": "makeSurveyAnswers",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurveyAnswersDto"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created survey answers.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyAnswersDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyAnswersDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Survey not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyAnswersDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyAnswersDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/surveys": {
+        "get": {
+          "tags": [
+            "survey-controller"
+          ],
+          "summary": "Retrieve overview data of all surveys.",
+          "operationId": "getSurveys",
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved list of surveys.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SurveyOverviewDto"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SurveyOverviewDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      },
+      "/api/surveys/{id}": {
+        "get": {
+          "tags": [
+            "survey-controller"
+          ],
+          "summary": "Retrieve data of a specific survey.",
+          "operationId": "getSurveyById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved survey data.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Survey not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyDto"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      },
+      "/api/surveys/stats": {
+        "get": {
+          "tags": [
+            "survey-controller"
+          ],
+          "summary": "Retrieve stats of all surveys.",
+          "operationId": "getSurveyStats",
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved survey statistics.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyStatsDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SurveyStatsDto"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      },
+      "/api/municipalities": {
+        "get": {
+          "tags": [
+            "municipality-controller"
+          ],
+          "summary": "Retrieve overview data of all municipalities.",
+          "operationId": "getMunicipalities",
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved list of municipalities.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MunicipalityOverviewDto"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MunicipalityOverviewDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      },
+      "/api/municipalities/{id}": {
+        "get": {
+          "tags": [
+            "municipality-controller"
+          ],
+          "summary": "Retrieve data of a specific municipality.",
+          "operationId": "getMunicipalityById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved municipality data.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipalityDto"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Municipality not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipalityDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipalityDto"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      },
+      "/api/municipalities/stats": {
+        "get": {
+          "tags": [
+            "municipality-controller"
+          ],
+          "summary": "Retrieve stats of all municipalities.",
+          "operationId": "getMunicipalitiesStats",
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved stats of municipalities.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipalityStatsDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "An unexpected error occurred.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MunicipalityStatsDto"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth": []
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AnswersDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "dimension": {
+              "type": "string"
+            },
+            "theme": {
+              "type": "string"
+            },
+            "indicator": {
+              "type": "string"
+            },
+            "rating": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "participationDate": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "SurveyAnswersDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "answers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnswersDto"
+              }
+            }
+          }
+        },
+        "SurveyOverviewDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "totalParticipatingMunicipalities": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avgQualitativeRating": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "DimensionDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "themes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ThemeDto"
+              }
+            }
+          }
+        },
+        "IndicatorDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "rating": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "MunicipalityOverviewDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "canton": {
+              "type": "string"
+            },
+            "district": {
+              "type": "string"
+            },
+            "avgQuantitativeRating": {
+              "type": "number",
+              "format": "double"
+            },
+            "avgQualitativeRating": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "QuestionDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "dimension": {
+              "type": "string"
+            },
+            "theme": {
+              "type": "string"
+            },
+            "indicator": {
+              "type": "string"
+            }
+          }
+        },
+        "SurveyDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "questions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/QuestionDto"
+              }
+            },
+            "qualitativeData": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DimensionDto"
+              }
+            },
+            "participatingMunicipalities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MunicipalityOverviewDto"
+              }
+            }
+          }
+        },
+        "ThemeDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "indicators": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/IndicatorDto"
+              }
+            }
+          }
+        },
+        "SurveyStatsDto": {
+          "type": "object",
+          "properties": {
+            "totalSurveys": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avgSurveysPerDay": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avgQualitativeRating": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "MunicipalityDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "canton": {
+              "type": "string"
+            },
+            "district": {
+              "type": "string"
+            },
+            "quantitativeData": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DimensionDto"
+              }
+            },
+            "qualitativeData": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DimensionDto"
+              }
+            }
+          }
+        },
+        "MunicipalityStatsDto": {
+          "type": "object",
+          "properties": {
+            "totalMunicipalities": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avgQuantitativeRating": {
+              "type": "number",
+              "format": "double"
+            },
+            "avgQualitativeRating": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "basicAuth": {
+          "type": "http",
+          "scheme": "basic"
+        }
+      }
+    }
+  }
