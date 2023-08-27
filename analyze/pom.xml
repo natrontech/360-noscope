@@ -12,7 +12,7 @@
 
 	<groupId>io.natron.noscope360</groupId>
 	<artifactId>analyze</artifactId>
-	<version>1.1.1</version>
+	<version>1.1.2</version>
 	<name>analyze</name>
 	<description>A comprehensive Spring Boot service for analyzing municipality data and managing surveys.</description>
 
