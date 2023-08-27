@@ -146,7 +146,7 @@
 
     <!-- Main content -->
     <div
-      class="absolute top-40 bottom-10 left-10 right-10  p-10 overflow-y-scroll scrollbar-thin rounded-lg "
+      class="absolute top-40 bottom-10 left-10 right-10  p-10 overflow-y-scroll scrollbar-thin rounded-lg bg-white shadow-xl"
     >
       <slot />
     </div>

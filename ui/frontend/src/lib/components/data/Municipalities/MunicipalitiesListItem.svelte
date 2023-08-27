@@ -4,10 +4,13 @@
   import RatingLabel from "../RatingLabel.svelte";
   import OneLineDiagram from "../OneLineDiagram.svelte";
   import GlowingButton from "$lib/components/base/GlowingButton.svelte";
-  import {Confetti} from "svelte-confetti";
+  import { Confetti } from "svelte-confetti";
   import ToggleConfetti from "$lib/components/base/ToggleConfetti.svelte";
+  import { goto } from "$app/navigation";
 
   export let participatingMunicipality: ParticipatingMunicipality;
+
+  let loading: boolean = false;
 
   function numberToFloat(number: number) {
     return number.toFixed(2);
@@ -85,15 +88,29 @@
     </div>
     <div class="flex flex-none items-center gap-x-4">
       <ToggleConfetti>
-				<button slot="label">
-
-      <GlowingButton label="Analysieren" />
-
+        <button
+          slot="label"
+          on:click={() => {
+            loading = true;
+            setTimeout(() => {
+              loading = false;
+              goto("/app/analyze");
+            }, 2000);
+          }}
+        >
+          <GlowingButton label="Analysieren" bind:loading />
         </button>
 
-				<Confetti y={[-0.5, 0.5]} x={[-0.5, 0.5]} colorRange={[30, 50]} amount=30 fallDistance=0px duration=1000 size=4 />
-			</ToggleConfetti>
-
+        <Confetti
+          y={[-0.5, 0.5]}
+          x={[-0.5, 0.5]}
+          colorRange={[30, 50]}
+          amount="30"
+          fallDistance="0px"
+          duration="1000"
+          size="4"
+        />
+      </ToggleConfetti>
 
       <div class="relative flex-none">
         <button

@@ -1,30 +1,21 @@
 <script>
-  import { onMount, tick } from "svelte";
+  import { tick } from 'svelte'
 
-  export let toggleOnce = false;
-  export let relative = true;
+  export let toggleOnce = false
+  export let relative = true
 
-  let active = false;
+  let active = false
 
   async function click() {
     if (toggleOnce) {
-      active = !active;
-      return;
+      active = !active
+      return
     }
 
-    active = false;
+    active = false
     await tick();
-    active = true;
+    active = true
   }
-
-  onMount(() => {
-    if (toggleOnce) {
-      return;
-    }
-
-    click();
-  });
-
 </script>
 
 <span on:click={click} class:relative>
