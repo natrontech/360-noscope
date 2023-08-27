@@ -9,7 +9,7 @@
   let showRecommendations = false;
   setTimeout(() => {
     showRecommendations = true;
-  }, 10000);
+  }, 20000);
 </script>
 
 <div class="flex justify-between items-center w-full">
